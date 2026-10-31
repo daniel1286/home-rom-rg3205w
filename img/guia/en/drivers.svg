@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" font-family="Segoe UI, Inter, Arial, sans-serif" role="img" aria-label="Installing the driver in Device Manager">
+<rect width="960" height="500" fill="#1B1A18"/>
+<text x="480.0" y="46" font-size="26" fill="#F3EFE8" font-weight="700" text-anchor="middle">Installing the driver in Device Manager</text>
+<rect x="30" y="80" width="460" height="340" rx="10" fill="#F3F3F3"/>
+<rect x="30" y="80" width="460" height="36" rx="10" fill="#E6E6E6"/>
+<rect x="30" y="106" width="460" height="10" fill="#E6E6E6"/>
+<text x="46" y="104" font-size="15" fill="#1B1A18" font-weight="400" text-anchor="start">Device Manager</text>
+<text x="52" y="146" font-size="15" fill="#555" font-weight="400" text-anchor="start">›</text>
+<rect x="70" y="133" width="16" height="14" rx="2" fill="#8AA4C8"/>
+<text x="94" y="146" font-size="15" fill="#1B1A18" font-weight="400" text-anchor="start">Network adapters</text>
+<text x="52" y="176" font-size="15" fill="#555" font-weight="400" text-anchor="start">›</text>
+<rect x="70" y="163" width="16" height="14" rx="2" fill="#8AA4C8"/>
+<text x="94" y="176" font-size="15" fill="#1B1A18" font-weight="400" text-anchor="start">Human Interface Devices</text>
+<text x="52" y="206" font-size="15" fill="#555" font-weight="400" text-anchor="start">›</text>
+<rect x="70" y="193" width="16" height="14" rx="2" fill="#8AA4C8"/>
+<text x="94" y="206" font-size="15" fill="#1B1A18" font-weight="400" text-anchor="start">Monitors</text>
+<text x="52" y="236" font-size="15" fill="#555" font-weight="400" text-anchor="start">⌄</text>
+<rect x="70" y="223" width="16" height="14" rx="2" fill="#8AA4C8"/>
+<text x="94" y="236" font-size="15" fill="#1B1A18" font-weight="400" text-anchor="start">Other devices</text>
+<rect x="82" y="246" width="170" height="28" fill="#CCE4F7" stroke="#3F8FD8"/>
+<path d="M96 252 l9 16 h-18 z" fill="#F2C12E" stroke="#8A6D00" stroke-width="1"/>
+<text x="102" y="267" font-size="11" fill="#1B1A18" font-weight="700" text-anchor="middle">!</text>
+<text x="118" y="266" font-size="15" fill="#1B1A18" font-weight="700" text-anchor="start">Android</text>
+<rect x="230" y="272" width="240" height="160" rx="6" fill="#FFF" stroke="#BBB"/>
+<rect x="234" y="278" width="232" height="28" rx="4" fill="#CCE4F7"/>
+<rect x="230" y="274" width="240" height="36" rx="6" fill="none" stroke="#E0A85A" stroke-width="3"/>
+<text x="244" y="298" font-size="15" fill="#1B1A18" font-weight="700" text-anchor="start">Update driver</text>
+<text x="244" y="328" font-size="15" fill="#1B1A18" font-weight="400" text-anchor="start">Disable device</text>
+<text x="244" y="358" font-size="15" fill="#1B1A18" font-weight="400" text-anchor="start">Uninstall device</text>
+<text x="244" y="388" font-size="15" fill="#1B1A18" font-weight="400" text-anchor="start">Scan for hardware changes</text>
+<text x="244" y="418" font-size="15" fill="#1B1A18" font-weight="400" text-anchor="start">Properties</text>
+<text x="170" y="310" font-size="14" fill="#8A6D00" font-weight="700" text-anchor="middle">right-click</text>
+<path d="M170 294 L160 276" stroke="#8A6D00" stroke-width="2"/>
+<circle cx="534" cy="104" r="16" fill="#E0A85A"/><text x="534" y="111" font-size="20" fill="#1B1A18" font-weight="700" text-anchor="middle">1</text>
+<text x="562" y="110" font-size="17" fill="#F3EFE8" font-weight="700" text-anchor="start">Update driver</text>
+<circle cx="534" cy="156" r="16" fill="#E0A85A"/><text x="534" y="163" font-size="20" fill="#1B1A18" font-weight="700" text-anchor="middle">2</text>
+<text x="562" y="162" font-size="17" fill="#F3EFE8" font-weight="400" text-anchor="start">Browse my computer for drivers</text>
+<circle cx="534" cy="208" r="16" fill="#E0A85A"/><text x="534" y="215" font-size="20" fill="#1B1A18" font-weight="700" text-anchor="middle">3</text>
+<text x="562" y="214" font-size="17" fill="#F3EFE8" font-weight="400" text-anchor="start">Let me pick from a list of drivers</text>
+<circle cx="534" cy="260" r="16" fill="#E0A85A"/><text x="534" y="267" font-size="20" fill="#1B1A18" font-weight="700" text-anchor="middle">4</text>
+<text x="562" y="266" font-size="17" fill="#F3EFE8" font-weight="400" text-anchor="start">Show All Devices → Next</text>
+<circle cx="534" cy="312" r="16" fill="#E0A85A"/><text x="534" y="319" font-size="20" fill="#1B1A18" font-weight="700" text-anchor="middle">5</text>
+<text x="562" y="318" font-size="17" fill="#F3EFE8" font-weight="400" text-anchor="start">Have Disk… → Browse…</text>
+<circle cx="534" cy="364" r="16" fill="#E0A85A"/><text x="534" y="371" font-size="20" fill="#1B1A18" font-weight="700" text-anchor="middle">6</text>
+<text x="562" y="370" font-size="17" fill="#F3EFE8" font-weight="400" text-anchor="start">Pick android_winusb.inf</text>
+<circle cx="534" cy="416" r="16" fill="#E0A85A"/><text x="534" y="423" font-size="20" fill="#1B1A18" font-weight="700" text-anchor="middle">7</text>
+<text x="562" y="422" font-size="17" fill="#E0A85A" font-weight="700" text-anchor="start">Android Bootloader Interface → Next</text>
+</svg>

@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Prueba en el navegador el encendido y el asistente de configuración de Home, Android 15 para el Askey RG3205W.">
+<title>Home · Demo interactiva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Simulador: el propio aparato dibujado a escala, con su pantalla de 1280×800 dentro. Un solo aspecto (oscuro), como la pantalla real */
+:root{
+  --suelo:#100F0E; --carcasa:#2E2B28; --borde:#47433E; --negro:#151412;
+  --fondo:#1B1A18; --panel:#252320; --panel2:#2E2C29; --linea:#37342F;
+  --texto:#F3EFE8; --texto2:#ABA59B; --texto3:#847E74;
+  --menta:#E0A85A; --menta-osc:#2B1C06; --menta-suave:rgba(224,168,90,.14); --aviso:#F08A6B;
+  --cuerpo:"Inter","Segoe UI",system-ui,sans-serif;
+  color-scheme:dark;
+}
+body{background:var(--suelo);color:var(--texto);font-family:var(--cuerpo);padding-block:20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;align-items:center;gap:16px}
+button{font:inherit;color:inherit}
+button:focus-visible,input:focus-visible{outline:3px solid var(--menta);outline-offset:3px}
+.cab{width:100%;max-width:1360px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between}
+.cab h1{margin:0;font-size:18px;font-weight:600}
+.cab p{margin:3px 0 0;font-size:13px;color:var(--texto2)}
+.cab button{height:38px;padding:0 16px;border-radius:19px;border:1px solid var(--borde);background:var(--panel);font-size:13px;font-weight:600;cursor:pointer}
+#marco{width:100%;max-width:1360px;position:relative}
+#aparato{position:absolute;left:0;top:0;width:1360px;height:1010px;transform-origin:0 0;background:var(--carcasa);border-radius:56px;box-shadow:inset 0 0 0 2px var(--borde),0 30px 80px rgba(0,0,0,.5)}
+#ranura{position:absolute;top:14px;left:380px;right:380px;height:3px;border-radius:2px;background:#292724}
+#cam{position:absolute;top:26px;left:50%;width:66px;height:22px;margin-left:-33px;border-radius:11px;background:var(--negro)}
+#cam:after{content:"";position:absolute;left:27px;top:5px;width:12px;height:12px;border-radius:50%;background:#292724}
+#pant{position:absolute;left:40px;top:66px;width:1280px;height:800px;background:var(--fondo);border-radius:8px;overflow:hidden;box-shadow:0 0 0 10px var(--negro);user-select:none;-webkit-user-select:none}
+#pant *{box-sizing:border-box}
+#altavoz{position:absolute;left:70px;right:70px;top:900px;height:80px;background-image:radial-gradient(circle,#1F1D1B 2.6px,transparent 3.1px);background-size:14px 14px}
+
+/* barra de arriba: marca, progreso y número de paso */
+.top{position:absolute;left:0;right:0;top:0;height:72px;display:flex;align-items:center;gap:22px;padding:0 32px;border-bottom:1px solid var(--linea)}
+.marca{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;letter-spacing:-.01em}
+.prog{flex:1;display:flex;gap:6px}
+.prog i{flex:1;height:5px;border-radius:3px;background:var(--linea)}
+.prog i.hecho{background:var(--menta)}
+.prog i.ahora{background:var(--texto)}
+.npaso{font-size:15px;color:var(--texto2);font-variant-numeric:tabular-nums;white-space:nowrap}
+/* cuerpo: explicación a la izquierda, opciones a la derecha */
+.cu{position:absolute;left:0;right:0;top:72px;bottom:96px;display:grid;grid-template-columns:420px 1fr}
+.izq{padding:52px 40px 32px 48px;display:flex;flex-direction:column;gap:18px;border-right:1px solid var(--linea)}
+.izq .il{width:220px;height:183px;margin:-8px 0 4px -6px}
+.izq h2{margin:0;font-size:38px;font-weight:700;letter-spacing:-.02em;line-height:1.1;text-wrap:balance}
+.izq p{margin:0;font-size:20px;line-height:1.5;color:var(--texto2)}
+.izq .nota{font-size:16px;color:var(--texto3);display:flex;gap:10px;line-height:1.5}
+.izq .nota svg{flex:none;width:20px;height:20px;margin-top:2px;color:var(--menta)}
+.der{padding:40px 56px 28px 40px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;scrollbar-width:none}
+.der::-webkit-scrollbar{display:none}
+.anim{animation:entra .3s cubic-bezier(.2,.8,.2,1)}
+@keyframes entra{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+.pie{position:absolute;left:0;right:0;bottom:0;height:96px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 32px;border-top:1px solid var(--linea)}
+.btn{height:60px;padding:0 34px;border-radius:30px;border:none;font-size:19px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:10px}
+.btn svg{width:22px;height:22px}
+.pri{background:var(--menta);color:var(--menta-osc)}
+.sec{background:transparent;border:1.5px solid var(--borde)}
+.btn:disabled{opacity:.35;cursor:default}
+
+/* piezas */
+.st{margin:10px 0 2px;font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto3)}
+.st:first-child{margin-top:0}
+.fila{width:100%;min-height:78px;padding:12px 22px;border-radius:16px;background:var(--panel);border:2px solid transparent;display:flex;align-items:center;gap:18px;text-align:left;cursor:pointer;font-size:19px}
+.fila.on{border-color:var(--menta);background:var(--panel2)}
+.fila .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.fila .tx b{font-weight:600}
+.fila .tx span{font-size:15px;color:var(--texto2);line-height:1.4}
+.fila .der2{color:var(--texto2);font-size:16px;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.fila .der2 svg{width:22px;height:22px}
+.fila .ico{width:44px;height:44px;border-radius:12px;background:var(--panel2);display:grid;place-items:center;flex:none;color:var(--texto)}
+.fila .ico svg{width:24px;height:24px}
+.fila.on .ico{background:var(--menta-suave);color:var(--menta)}
+.sw{width:58px;height:34px;border-radius:17px;background:#4E4A44;position:relative;flex:none;transition:background .2s}
+.sw:after{content:"";position:absolute;left:4px;top:4px;width:26px;height:26px;border-radius:50%;background:var(--texto);transition:transform .2s}
+.sw.on{background:var(--menta)}
+.sw.on:after{transform:translateX(24px);background:var(--menta-osc)}
+.caja{width:30px;height:30px;border-radius:8px;border:2px solid #615C55;flex:none;display:grid;place-items:center}
+.caja.on{background:var(--menta);border-color:var(--menta);color:var(--menta-osc)}
+.caja svg{width:20px;height:20px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{height:54px;padding:0 22px;border-radius:27px;background:var(--panel);border:2px solid transparent;font-size:17px;font-weight:500;cursor:pointer}
+.chip.on{border-color:var(--menta);background:var(--menta-suave)}
+.campo{display:flex;flex-direction:column;gap:8px}
+.campo label{font-size:15px;color:var(--texto2)}
+.campo input{height:64px;width:100%;background:var(--panel);border:2px solid var(--linea);border-radius:14px;color:var(--texto);font:500 20px var(--cuerpo);padding:0 18px}
+.campo input:focus{border-color:var(--menta);outline:none}
+.bien{display:flex;align-items:center;gap:12px;padding:16px 20px;border-radius:14px;background:var(--menta-suave);color:var(--texto);font-size:18px}
+.bien svg{width:26px;height:26px;color:var(--menta);flex:none}
+.av{display:flex;gap:12px;padding:14px 18px;border-radius:14px;background:rgba(240,138,107,.12);font-size:16px;line-height:1.45}
+.av svg{width:22px;height:22px;color:var(--aviso);flex:none;margin-top:1px}
+.carga{display:flex;align-items:center;gap:14px;font-size:18px;color:var(--texto2);padding:14px 4px}
+.carga svg{width:26px;height:26px;color:var(--menta);animation:gira 1s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.lk{background:none;border:none;color:var(--menta);font-size:17px;font-weight:600;cursor:pointer;padding:10px 0;align-self:flex-start}
+.reloj{font-size:64px;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.rango{display:flex;align-items:center;gap:18px;padding:18px 22px;border-radius:16px;background:var(--panel)}
+.rango input{flex:1;accent-color:var(--menta);height:34px}
+.rango output{width:56px;text-align:right;font-size:19px;font-variant-numeric:tabular-nums}
+.sub{padding:4px 4px 10px 66px;display:flex;flex-direction:column;gap:12px}
+
+/* pantallas completas: bienvenida, aplicando, final */
+.centro{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center;padding:40px}
+.centro h2{margin:0;font-size:52px;font-weight:700;letter-spacing:-.02em}
+.centro p{margin:0;font-size:21px;color:var(--texto2)}
+.traza path,.traza rect.p{stroke-dasharray:400;stroke-dashoffset:400;animation:traza 1.6s cubic-bezier(.4,0,.2,1) forwards}
+.traza .enc{animation:enc .8s ease-out 1.3s both}
+.traza .pun{animation:enc .5s ease-out both}
+@keyframes traza{to{stroke-dashoffset:0}}
+@keyframes enc{from{opacity:0}to{opacity:1}}
+.lista{width:560px;display:flex;flex-direction:column;gap:6px;text-align:left}
+.lista div{display:flex;align-items:center;gap:14px;font-size:19px;padding:8px 0;color:var(--texto3)}
+.lista div.ok{color:var(--texto)}
+.lista div.ya{color:var(--texto)}
+.lista svg{width:24px;height:24px;flex:none}
+.lista .ok svg{color:var(--menta)}
+.lista .ya svg{color:var(--menta);animation:gira 1s linear infinite}
+/* encendido: splash (imagen fija) y animación de arranque, a pantalla completa sobre negro */
+.boot{position:absolute;inset:0;background:#000;cursor:pointer}
+.boot canvas{width:100%;height:100%;display:block}
+.bhalo{opacity:1;animation:bon 1.2s ease-out 1s both,brespira 3s ease-in-out 2.2s infinite}
+.bscr{opacity:1;animation:bon .6s ease-out 1s both}
+.bnom{opacity:1;animation:bnom .7s ease-out 1.5s both}
+.bdot{opacity:.9;animation-name:bdot,bola;animation-duration:.5s,1.8s;animation-timing-function:ease-out,ease-in-out;animation-fill-mode:both,none;animation-iteration-count:1,infinite}
+@keyframes bon{from{opacity:0}to{opacity:1}}
+@keyframes bdot{from{opacity:0}50%{opacity:1}to{opacity:.9}}
+@keyframes bola{0%,100%{opacity:.9}50%{opacity:.3}}
+@keyframes brespira{0%,100%{opacity:1}50%{opacity:.55}}
+@keyframes bnom{from{opacity:0;transform:translateY(2px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){.anim,.traza path,.traza rect.p,.traza .enc,.traza .pun,.carga svg,.lista .ya svg,.bdot,.bscr,.bnom,.bhalo{animation:none;stroke-dashoffset:0}}
+.cab a.enlace{height:38px;padding:0 16px;border-radius:19px;border:1px solid var(--borde);background:var(--panel);font-size:13px;font-weight:600;color:var(--texto);text-decoration:none;display:inline-flex;align-items:center}
+</style>
+</head>
+<body>
+<div class="cab">
+  <div><h1>Home · demo interactiva</h1><p id="fase">Toca la pantalla como si fuera el aparato. Wi-Fi, Home Assistant y Snapcast están simulados.</p></div>
+  <div style="display:flex;gap:10px"><button type="button" id="reini">Encender de nuevo</button><a class="enlace" href="https://github.com/daniel1286/home-rom-rg3205w">Código y descargas</a></div>
+</div>
+<div id="marco"><div id="aparato"><div id="ranura"></div><div id="cam"></div><div id="pant" role="application" aria-label="Pantalla del aparato"></div><div id="altavoz"></div></div></div>
+
+<script>
+(function(){
+/* Escena de arranque de Home (1280x800): render(ctx, t) dibuja el instante t en segundos.
+   0 s = splash: el aparato de frente en línea y el nombre debajo · 0,5 s el contorno se deshace en partículas
+   · la cámara gira y las partículas montan el aparato en 3D · se vuelve sólido y la cámara vuelve de frente
+   · se enciende su pantalla, luz en el suelo · el altavoz suena en ola · onda por el suelo y el nombre.
+   Desde 4,6 s, bucle periódico de 3 s: la pantalla respira, la ola del altavoz, polvo de luz que sube
+   y un destello que recorre el contorno. */
+var W = 1280, H = 800, CX = 640, CY = 318, YW = 230, F = 1500;
+var PIV = { x: 0, y: 230, z: 0 };
+var AMB = '224,168,90', LUZ = '242,232,214', FONDO = '#0B0908';
+var T_BUCLE = 4.6, PERIODO = 3;
+function cl(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+function sm(x) { x = cl(x); return x * x * (3 - 2 * x); }
+function eoc(x) { x = cl(x); return 1 - Math.pow(1 - x, 3); }
+function eio(x) { x = cl(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+function rng(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function ra(a) { return 'rgba(' + AMB + ',' + cl(a).toFixed(3) + ')'; }
+function rl(a) { return 'rgba(' + LUZ + ',' + cl(a).toFixed(3) + ')'; }
+
+/* Cámara: de frente (splash) → gira a un lado mientras se monta → vuelve de frente, un poco desde arriba */
+var KEYS = [[0, 0, 2], [0.6, 0, 2], [2.3, 34, 15], [3.5, 22, 10], [4.5, 0, 5]];
+function cam(t) {
+  for (var i = 1; i < KEYS.length; i++) {
+    if (t <= KEYS[i][0]) {
+      var a = KEYS[i - 1], b = KEYS[i], k = sm((t - a[0]) / (b[0] - a[0]));
+      return { yaw: (a[1] + (b[1] - a[1]) * k) * Math.PI / 180, pitch: (a[2] + (b[2] - a[2]) * k) * Math.PI / 180 };
+    }
+  }
+  var u = KEYS[KEYS.length - 1];
+  return { yaw: u[1] * Math.PI / 180, pitch: u[2] * Math.PI / 180 };
+}
+function proj(p, c) {
+  var x = p.x - PIV.x, y = p.y - PIV.y, z = p.z - PIV.z;
+  var cy = Math.cos(c.yaw), sy = Math.sin(c.yaw), cp = Math.cos(c.pitch), sp = Math.sin(c.pitch);
+  var x1 = x * cy + z * sy, z1 = -x * sy + z * cy;
+  var y2 = y * cp - z1 * sp, z2 = y * sp + z1 * cp;
+  x1 += PIV.x; y2 += PIV.y; z2 += PIV.z;
+  if (F - z2 < 80) return null;
+  var s = F / (F - z2);
+  return { x: CX + x1 * s, y: CY - (y2 - YW) * s, s: s };
+}
+function path3(ctx, pts, c, close) {
+  var first = true; ctx.beginPath();
+  for (var i = 0; i < pts.length; i++) { var p = proj(pts[i], c); if (!p) continue; if (first) { ctx.moveTo(p.x, p.y); first = false; } else ctx.lineTo(p.x, p.y); }
+  if (close) ctx.closePath();
+}
+function circ3(cx, cz, r, n, a0, a1) {
+  var pts = []; a0 = a0 || 0; a1 = a1 === undefined ? 6.2832 : a1;
+  for (var i = 0; i <= n; i++) { var a = a0 + (a1 - a0) * i / n; pts.push({ x: cx + Math.cos(a) * r, y: 0, z: cz + Math.sin(a) * r }); }
+  return pts;
+}
+
+/* El aparato: el mismo dibujo de frente (120x100) llevado a 3D, de pie sobre el suelo (y = 0) */
+var K = 5.2, ZF = 46, ZB = -46;
+function d2(x, y, z) { return { x: (x - 60) * K, y: (94 - y) * K, z: z }; }
+var O2 = [[20, 8]];
+function lin(p) { O2.push(p); }
+function quad(c, p) { var a = O2[O2.length - 1]; for (var i = 1; i <= 8; i++) { var u = i / 8; O2.push([(1 - u) * (1 - u) * a[0] + 2 * (1 - u) * u * c[0] + u * u * p[0], (1 - u) * (1 - u) * a[1] + 2 * (1 - u) * u * c[1] + u * u * p[1]]); } }
+lin([100, 8]); quad([108, 8], [108.5, 16]); lin([111.5, 86]); quad([112, 94], [104, 94]); lin([16, 94]); quad([8, 94], [8.5, 86]); lin([11.5, 16]); quad([12, 8], [20, 8]);
+var FRONT = O2.map(function (p) { return d2(p[0], p[1], ZF); });
+var BACK = O2.map(function (p) { var q = d2(p[0], p[1], ZB); q.x *= 0.95; q.y = q.y * 0.97 + 4; return q; });
+var CORNERS = [5, 15, 25, 35].map(function (i) { return Math.min(i, FRONT.length - 1); });
+var SCREEN = [[20, 22], [100, 22], [100, 72], [20, 72]].map(function (p) { return d2(p[0], p[1], ZF + 1); });
+var CAMP = [[54, 13.5], [66, 13.5], [66, 18.5], [54, 18.5]].map(function (p) { return d2(p[0], p[1], ZF + 1); });
+var SLOT = [d2(34, 12, ZF + 1), d2(86, 12, ZF + 1)];
+var DOTS = [];
+for (var r0 = 0; r0 < 3; r0++) for (var c0 = 0; c0 < 21; c0++) DOTS.push({ c: c0, p: d2(20 + c0 * 4, 80 + r0 * 4, ZF + 1) });
+
+/* Aristas para las partículas */
+var EDGES = [];
+for (var i = 0; i < FRONT.length - 1; i++) { EDGES.push({ a: FRONT[i], b: FRONT[i + 1] }); EDGES.push({ a: BACK[i], b: BACK[i + 1] }); }
+CORNERS.forEach(function (j) { EDGES.push({ a: FRONT[j], b: BACK[j] }); });
+for (var s0 = 0; s0 < 4; s0++) EDGES.push({ a: SCREEN[s0], b: SCREEN[(s0 + 1) % 4] });
+function lerp3(a, b, u) { return { x: a.x + (b.x - a.x) * u, y: a.y + (b.y - a.y) * u, z: a.z + (b.z - a.z) * u }; }
+function len3(e) { return Math.hypot(e.b.x - e.a.x, e.b.y - e.a.y, e.b.z - e.a.z); }
+var PERIM = 0; for (var f0 = 0; f0 < FRONT.length - 1; f0++) PERIM += len3({ a: FRONT[f0], b: FRONT[f0 + 1] });
+function onFront(u) {
+  var d = u * PERIM;
+  for (var i = 0; i < FRONT.length - 1; i++) { var L = len3({ a: FRONT[i], b: FRONT[i + 1] }); if (d <= L) return lerp3(FRONT[i], FRONT[i + 1], d / L); d -= L; }
+  return FRONT[0];
+}
+var R = rng(20261027), TOT = EDGES.reduce(function (s, e) { return s + len3(e); }, 0);
+var C0 = cam(0.5), PARTS = [];
+for (var n = 0; n < 1000; n++) {
+  var d = R() * TOT, e = EDGES[0];
+  for (var j = 0; j < EDGES.length; j++) { var L = len3(EDGES[j]); if (d <= L) { e = EDGES[j]; break; } d -= L; }
+  var tg = lerp3(e.a, e.b, R()), st = proj(onFront(R()), C0);
+  var ang = Math.atan2(st.y - CY, st.x - CX) + (R() - .5) * 1.4;
+  PARTS.push({ tg: tg, sx: st.x, sy: st.y, ang: ang, sp: 60 + R() * 170, sw: (R() - .5) * 70, del: R() * .55, sz: .8 + R() * 1.3, tw: R() * 6.28 });
+}
+var MOTES = [];
+for (var m = 0; m < 40; m++) { var rad = 290 + R() * 140, an = R() * 6.2832; MOTES.push({ x: Math.cos(an) * rad, z: Math.sin(an) * rad, ph: R(), sz: .6 + R() * 1.1 }); }
+
+function glowDot(ctx, x, y, r, al) {
+  if (al <= 0) return;
+  ctx.fillStyle = ra(al * .18); ctx.beginPath(); ctx.arc(x, y, r * 3.4, 0, 6.2832); ctx.fill();
+  ctx.fillStyle = 'rgba(255,238,210,' + cl(al).toFixed(3) + ')'; ctx.beginPath(); ctx.arc(x, y, r, 0, 6.2832); ctx.fill();
+}
+
+function drawFloor(ctx, c, t, l, intro, on) {
+  var g = sm((t - 1.0) / 1.5); if (g <= 0) return;
+  // Luz de la pantalla en el suelo, delante del aparato
+  if (on > 0) {
+    var fp = proj({ x: 0, y: 0, z: 150 }, c);
+    if (fp) {
+      ctx.save(); ctx.translate(fp.x, fp.y); ctx.scale(1, 0.22);
+      var lg = ctx.createRadialGradient(0, 0, 0, 0, 0, 520 * fp.s);
+      lg.addColorStop(0, ra(.28 * on)); lg.addColorStop(1, ra(0));
+      ctx.fillStyle = lg; ctx.beginPath(); ctx.arc(0, 0, 520 * fp.s, 0, 6.2832); ctx.fill(); ctx.restore();
+    }
+  }
+  // Anillos de la base (marcas y arcos giran con periodo de 3 s)
+  [[300, .30, 1.6], [264, .12, 1], [234, .2, 1]].forEach(function (rg, i) {
+    var k = sm((t - 1.2 - i * .15) / 0.9); if (k <= 0) return;
+    ctx.strokeStyle = ra(rg[1] * g); ctx.lineWidth = rg[2];
+    path3(ctx, circ3(0, 0, rg[0], 90, -1.57, -1.57 + 6.2832 * k), c); ctx.stroke();
+  });
+  var rot = t * (Math.PI / 18);
+  ctx.strokeStyle = ra(.32 * g); ctx.lineWidth = 1.4;
+  for (var i = 0; i < 48; i++) {
+    var a = rot + i / 48 * 6.2832, l1 = i % 4 === 0 ? 14 : 6;
+    path3(ctx, [{ x: Math.cos(a) * 300, y: 0, z: Math.sin(a) * 300 }, { x: Math.cos(a) * (300 + l1), y: 0, z: Math.sin(a) * (300 + l1) }], c); ctx.stroke();
+  }
+  ctx.strokeStyle = ra(.42 * g); ctx.lineWidth = 2.2;
+  for (var s = 0; s < 3; s++) { var b = -t * (2 * Math.PI / 9) + s * (2 * Math.PI / 3); path3(ctx, circ3(0, 0, 250, 24, b, b + .7), c); ctx.stroke(); }
+  function onda(r, al) {
+    if (al <= 0 || r <= 0) return;
+    ctx.strokeStyle = ra(al); ctx.lineWidth = 2; path3(ctx, circ3(0, 0, r, 90), c); ctx.stroke();
+    ctx.strokeStyle = ra(al * .25); ctx.lineWidth = 8; path3(ctx, circ3(0, 0, r - 6, 90), c); ctx.stroke();
+  }
+  // la onda se apaga antes de que su lado lejano suba por detrás del aparato
+  if (t >= 4.6 && t < 5.8) onda(300 + (t - 4.6) * 420, 0.6 * (1 - sm((t - 4.6) / 1.2)));
+  if (l >= 0.6 && l < 1.8) onda(300 + (l - 0.6) * 300, 0.25 * (1 - sm((l - 0.6) / 1.2)) * intro);
+}
+
+function textos(ctx, t) {
+  var a = t < 0.5 ? 1 : t < 0.8 ? 1 - sm((t - 0.5) / 0.3) : sm((t - 4.6) / 0.8);
+  if (a <= 0) return;
+  ctx.save(); ctx.globalAlpha = a; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  ctx.font = '600 86px Inter, "Segoe UI", sans-serif';
+  if ('letterSpacing' in ctx) ctx.letterSpacing = '1px';
+  var y = 712 - 8 * (1 - a) * (t > 1 ? 1 : 0), fill = rl(1);
+  if (t > 4.6 && t < 6.2) {
+    var w = ctx.measureText('Home').width, k = eio((t - 4.6) / 1.6), cx = CX - w / 2 + (-0.4 + 1.8 * k) * w, bw = 0.3 * w;
+    var g = ctx.createLinearGradient(cx - bw, 0, cx + bw, 0);
+    g.addColorStop(0, rl(1)); g.addColorStop(0.5, 'rgba(240,190,110,1)'); g.addColorStop(1, rl(1));
+    fill = g;
+  }
+  ctx.fillStyle = fill; ctx.fillText('Home', CX, y);
+  ctx.restore();
+}
+
+function render(ctx, t) {
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.setLineDash([]); ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.fillStyle = FONDO; ctx.fillRect(0, 0, W, H);
+  var c = cam(t), l = t >= T_BUCLE ? (t - T_BUCLE) % PERIODO : -1, intro = cl((t - T_BUCLE) / 1.0);
+  var on = sm((t - 3.8) / 0.6), breath = l >= 0 ? 0.5 - 0.5 * Math.cos(l / PERIODO * 6.2832) : 0;
+  // Luz cálida de ambiente cuando se enciende
+  if (on > 0) {
+    var bg = ctx.createRadialGradient(CX, CY, 0, CX, CY, 760);
+    bg.addColorStop(0, ra((.13 - .04 * breath * intro) * on)); bg.addColorStop(1, ra(0));
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+  }
+  drawFloor(ctx, c, t, l, intro, on);
+  // Polvo de luz que sube alrededor
+  if (t > 3.6) {
+    ctx.globalCompositeOperation = 'lighter';
+    var mk = sm((t - 3.6) / 1.2);
+    MOTES.forEach(function (mo) { var q = ((t / 3) + mo.ph) % 1, p = proj({ x: mo.x, y: 10 + q * 420, z: mo.z }, c); if (p) glowDot(ctx, p.x, p.y, mo.sz * p.s, .5 * Math.sin(q * Math.PI) * mk); });
+    ctx.globalCompositeOperation = 'source-over';
+  }
+  var solid = sm((t - 3.0) / 0.6), fa = t < 0.5 ? 1 : t < 0.8 ? 1 - sm((t - 0.5) / 0.3) : 0, det = Math.max(fa, solid);
+  // Cuerpo: aristas de atrás y laterales, tapadas luego por la cara delantera
+  if (solid > 0) {
+    ctx.lineWidth = 2; ctx.strokeStyle = rl(.28 * solid);
+    path3(ctx, BACK, c); ctx.stroke();
+    CORNERS.forEach(function (j) { path3(ctx, [FRONT[j], BACK[j]], c); ctx.stroke(); });
+    var p0 = proj(FRONT[0], c), p1 = proj(FRONT[22], c);
+    var fg = ctx.createLinearGradient(0, p0.y, 0, p1.y);
+    fg.addColorStop(0, 'rgba(34,29,24,' + (.96 * solid).toFixed(3) + ')'); fg.addColorStop(1, 'rgba(20,17,14,' + (.96 * solid).toFixed(3) + ')');
+    ctx.fillStyle = fg; path3(ctx, FRONT, c, true); ctx.fill();
+  }
+  // Contorno delantero
+  var oa = Math.max(fa, solid);
+  if (oa > 0) {
+    ctx.shadowColor = ra(.9); ctx.shadowBlur = 10 + 10 * on + 10 * breath * intro;
+    ctx.strokeStyle = rl(oa); ctx.lineWidth = 3.2; path3(ctx, FRONT, c, true); ctx.stroke(); ctx.shadowBlur = 0;
+  }
+  if (det > 0) {
+    ctx.lineWidth = 1.6; ctx.strokeStyle = rl(.5 * det); path3(ctx, SLOT, c); ctx.stroke();
+    ctx.fillStyle = 'rgba(12,10,9,' + det.toFixed(3) + ')'; path3(ctx, CAMP, c, true); ctx.fill();
+    ctx.strokeStyle = rl(.6 * det); ctx.lineWidth = 1.4; ctx.stroke();
+    // Pantalla: apagada (marco) o encendida (luz ámbar)
+    ctx.fillStyle = 'rgba(13,11,10,' + det.toFixed(3) + ')'; path3(ctx, SCREEN, c, true); ctx.fill();
+    ctx.strokeStyle = rl(.45 * det); ctx.lineWidth = 2; ctx.stroke();
+  }
+  if (on > 0) {
+    var s0 = proj(SCREEN[0], c), s2 = proj(SCREEN[2], c), lum = 1 - 0.14 * breath * intro;
+    var sg = ctx.createLinearGradient(s0.x, s0.y, s2.x, s2.y);
+    sg.addColorStop(0, 'rgba(240,192,120,' + (on * lum).toFixed(3) + ')'); sg.addColorStop(1, 'rgba(200,132,58,' + (on * lum).toFixed(3) + ')');
+    ctx.shadowColor = ra(1); ctx.shadowBlur = 60 * on * lum;
+    ctx.fillStyle = sg; path3(ctx, SCREEN, c, true); ctx.fill(); ctx.shadowBlur = 0;
+    // Reflejo en el cristal
+    var h0 = lerp3(SCREEN[0], SCREEN[1], .55), h1 = lerp3(SCREEN[0], SCREEN[1], .8), h2 = lerp3(SCREEN[3], SCREEN[2], .45), h3 = lerp3(SCREEN[3], SCREEN[2], .2);
+    ctx.fillStyle = 'rgba(255,245,230,' + (.10 * on).toFixed(3) + ')'; path3(ctx, [h0, h1, h2, h3], c, true); ctx.fill();
+  }
+  // Altavoz: puntos que se encienden en ola y siguen sonando en el bucle
+  if (det > 0) {
+    DOTS.forEach(function (dt) {
+      var p = proj(dt.p, c); if (!p) return;
+      var lit = 0;
+      if (t > 4.0) {
+        var ent = sm((t - 4.0 - dt.c * .025) / .3);
+        var buc = l >= 0 ? 0.55 + 0.45 * Math.sin(l / PERIODO * 6.2832 * 2 - dt.c * .32) : 0;
+        lit = ent * (1 - intro) + buc * intro;
+      }
+      ctx.fillStyle = rl(.3 * det * (1 - lit)); ctx.beginPath(); ctx.arc(p.x, p.y, 3.4 * p.s, 0, 6.2832); ctx.fill();
+      if (lit > 0) { ctx.fillStyle = ra(lit); ctx.beginPath(); ctx.arc(p.x, p.y, 3.6 * p.s, 0, 6.2832); ctx.fill(); }
+    });
+  }
+  // Partículas: el contorno se deshace y monta el aparato en 3D
+  if (t > 0.5 && t < 3.7) {
+    ctx.globalCompositeOperation = 'lighter';
+    var fadeOut = 1 - sm((t - 3.0) / 0.7);
+    for (var i = 0; i < PARTS.length; i++) {
+      var pt = PARTS[i], te = eoc((t - 0.5) / 1.0);
+      var bx = pt.sx + Math.cos(pt.ang) * pt.sp * te + Math.cos(pt.ang + 1.57) * pt.sw * Math.sin(te * 3.14);
+      var by = pt.sy + Math.sin(pt.ang) * pt.sp * te + Math.sin(pt.ang + 1.57) * pt.sw * Math.sin(te * 3.14);
+      var tc = eio((t - 1.5 - pt.del) / 1.4), tp = proj(pt.tg, c); if (!tp) continue;
+      glowDot(ctx, bx + (tp.x - bx) * tc, by + (tp.y - by) * tc, pt.sz, (0.6 + 0.4 * Math.sin(t * 8 + pt.tw)) * fadeOut * cl((t - 0.5) / 0.15));
+    }
+    ctx.globalCompositeOperation = 'source-over';
+  }
+  // Bucle: destello que recorre el contorno
+  if (l >= 1.6) {
+    ctx.globalCompositeOperation = 'lighter';
+    var gk = eio((l - 1.6) / 1.4);
+    for (var s = 0; s < 24; s++) { var pp = proj(onFront(cl(gk - s * .005)), c); if (pp) glowDot(ctx, pp.x, pp.y, 3.4 - s * .12, (1 - s / 24) * Math.sin(Math.PI * gk) * intro); }
+    ctx.globalCompositeOperation = 'source-over';
+  }
+  textos(ctx, t);
+}
+
+window.escenaHome=render;
+})();
+</script>
+<script>
+(function(){
+const pant=document.getElementById('pant'),ap=document.getElementById('aparato'),marco=document.getElementById('marco');
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ic=(d,extra='')=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra}>${d}</svg>`;
+const I={
+  ok:ic('<path d="M5 12.5l4.5 4.5L19 7.5"/>'),
+  dcha:ic('<path d="M9 5l7 7-7 7"/>'),
+  izq:ic('<path d="M15 5l-7 7 7 7"/>'),
+  abajo:ic('<path d="M6 9l6 6 6-6"/>'),
+  candado:ic('<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'),
+  carga:ic('<path d="M21 12a9 9 0 1 1-6.2-8.6"/>'),
+  info:ic('<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>'),
+  aviso:ic('<path d="M12 3l9.5 17h-19z"/><path d="M12 10v4M12 17h.01"/>'),
+  casa:ic('<path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/>'),
+  altavoz:ic('<rect x="6" y="3" width="12" height="18" rx="2"/><circle cx="12" cy="14" r="3"/><path d="M12 7h.01"/>'),
+  pc:ic('<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>'),
+  tienda:ic('<path d="M4 8h16l-1.5 12h-13z"/><path d="M9 8a3 3 0 0 1 6 0"/>'),
+  bolsa:ic('<path d="M6 7h12l1 14H5z"/><path d="M9 7V5a3 3 0 0 1 6 0v2"/>'),
+  micro:ic('<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>'),
+  camara:ic('<rect x="3" y="7" width="13" height="10" rx="2"/><path d="M16 11l5-3v8l-5-3"/>'),
+  red:ic('<path d="M3 9a13 13 0 0 1 18 0M6.5 12.5a8 8 0 0 1 11 0M10 16a3 3 0 0 1 4 0"/><path d="M12 19.5h.01"/>'),
+  chip:ic('<rect x="7" y="7" width="10" height="10" rx="1"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/>'),
+  doc:ic('<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/>'),
+  usb:ic('<path d="M12 3v14M8 7l4-4 4 4M7 13v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2"/><circle cx="12" cy="20" r="1.5"/>')
+};
+const barras=n=>`<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">${[0,1,2,3].map(i=>`<rect x="${3+i*5}" y="${17-i*4}" width="3" height="${4+i*4}" rx="1" fill="currentColor" opacity="${i<n?1:.25}"/>`).join('')}</svg>`;
+/* El aparato dibujado: carcasa, cámara, pantalla y rejilla del altavoz */
+function aparato(w,encendida,animar){
+  const pts=[];for(let r=0;r<3;r++)for(let c=0;c<21;c++)pts.push(`<circle class="${animar?'pun':''}" style="${animar?`animation-delay:${(1.0+c*.03).toFixed(2)}s`:''}" cx="${20+c*4}" cy="${80+r*4}" r=".9" fill="${encendida?'#E0A85A':'#DDD6CA'}" fill-opacity="${encendida?1:.45}"/>`);
+  return `<svg class="${animar?'traza':''}" width="${w}" height="${w*100/120}" viewBox="0 0 120 100" aria-hidden="true">
+  ${encendida?`<rect class="${animar?'enc':''}" x="20" y="22" width="80" height="50" rx="3" fill="#E0A85A"/>`:''}
+  <path pathLength="400" d="M20 8 H100 Q108 8 108.5 16 L111.5 86 Q112 94 104 94 H16 Q8 94 8.5 86 L11.5 16 Q12 8 20 8 Z" fill="none" stroke="#DDD6CA" stroke-width="2.5" stroke-linejoin="round"/>
+  <path pathLength="400" d="M56.5 16 H63.5" stroke="#DDD6CA" stroke-width="5" stroke-linecap="round"/>
+  <rect class="p" pathLength="400" x="20" y="22" width="80" height="50" rx="3" fill="none" stroke="#DDD6CA" stroke-opacity=".55" stroke-width="2"/>
+  ${pts.join('')}</svg>`;
+}
+
+/* ---------- estado ---------- */
+const NUEVO=()=>({paso:'bienvenida',idioma:'Español',zona:'Península y Baleares',auto:true,h24:true,
+  redSel:null,clave:'',conectando:false,red:null,
+  nombre:'Salón',
+  apps:{ha:false,snap:false,vnc:false,fdroid:true,aurora:true},
+  ha:'nada',haDir:'',snap:'nada',snapSrv:null,
+  brillo:70,apagar:'Nunca',mic:true,cam:false,
+  abierto:null,ipFija:false,adb:false,mac:'Mantener la de fábrica',certs:0,
+  hechas:0});
+let S=NUEVO();
+const REDES=[{n:'Casa_5G',s:4,l:1},{n:'Casa',s:3,l:1},{n:'Invitados',s:2,l:0},{n:'Vecino-2G',s:1,l:1}];
+const APPS=[
+  {k:'ha',ico:'casa',t:'Panel de Home Assistant',s:'Fully Kiosk enseña tu panel a pantalla completa, con la app de Home Assistant'},
+  {k:'snap',ico:'altavoz',t:'Altavoz de casa',s:'Snapcast: suena sincronizado con el resto de altavoces'},
+  {k:'vnc',ico:'pc',t:'Manejar la pantalla desde el PC',s:'droidVNC-NG: ves y tocas la pantalla desde otro ordenador'},
+  {k:'fdroid',ico:'tienda',t:'F-Droid',s:'Tienda de apps libres y gratuitas'},
+  {k:'aurora',ico:'bolsa',t:'Aurora Store',s:'Apps de Google Play sin cuenta de Google'}
+];
+const pasos=()=>['region','red','nombre','apps',...(S.apps.ha?['ha']:[]),...(S.apps.snap?['snap']:[]),'pantalla','privacidad','avanzado','resumen'];
+const INFO={
+  region:{t:'Región y hora',d:'¿Dónde está la pantalla? Así la hora siempre es la buena.'},
+  red:{t:'Wi-Fi',d:'Elige tu red. La pantalla la recordará.',n:'Puedes saltarlo y conectarla luego desde Ajustes.'},
+  nombre:{t:'Nombre',d:'Cómo se llamará esta pantalla en tu red y en Bluetooth.',n:'Útil si tienes más de una en casa.'},
+  apps:{t:'Qué quieres instalar',d:'Marca lo que vas a usar. Lo demás no se instala y no ocupa sitio.',n:'Chrome, YouTube o Spotify se instalan luego desde Aurora Store.'},
+  ha:{t:'Home Assistant',d:'Lo busco en tu red para que el panel se abra solo al encender.'},
+  snap:{t:'Altavoz de casa',d:'Elige el servidor de música. La pantalla sonará a la vez que el resto de altavoces.'},
+  pantalla:{t:'Pantalla',d:'Brillo y cuándo se apaga.',n:'Si la usas de panel o de reloj, déjala siempre encendida.'},
+  privacidad:{t:'Privacidad',d:'Tú decides si se usan el micrófono y la cámara.',n:'Home no envía datos de uso a nadie.'},
+  avanzado:{t:'Opciones avanzadas',d:'Solo si sabes lo que necesitas. Si no, sigue adelante.'},
+  resumen:{t:'Resumen',d:'Revisa todo antes de aplicarlo. Toca una línea para cambiarla.'}
+};
+
+/* ---------- piezas ---------- */
+const sw=on=>`<span class="sw ${on?'on':''}" aria-hidden="true"></span>`;
+const fila=({a,ico,t,s,der='',on=false,role='',checked})=>`<button type="button" class="fila ${on?'on':''}" data-a="${a}" ${role?`role="${role}" aria-checked="${checked}"`:''}>${ico?`<span class="ico">${I[ico]}</span>`:''}<span class="tx"><b>${t}</b>${s?`<span>${s}</span>`:''}</span>${der}</button>`;
+const tog=(a,ico,t,s,on)=>fila({a,ico,t,s,on:false,role:'switch',checked:on,der:sw(on)});
+const chips=(lista,valor,pref)=>`<div class="chips">${lista.map(x=>`<button type="button" class="chip ${x===valor?'on':''}" aria-pressed="${x===valor}" data-a="${pref}:${esc(x)}">${esc(x)}</button>`).join('')}</div>`;
+const st=t=>`<div class="st">${t}</div>`;
+const slug=n=>n.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'home';
+function hora(){const d=new Date();let h=d.getHours();if(S.zona==='Canarias'||S.zona==='Portugal')h=(h+23)%24;const m=String(d.getMinutes()).padStart(2,'0');return S.h24?`${String(h).padStart(2,'0')}:${m}`:`${h%12||12}:${m} ${h<12?'a. m.':'p. m.'}`}
+
+/* ---------- vistas de cada paso ---------- */
+const V={
+region:()=>`${st('Zona horaria')}${chips(['Península y Baleares','Canarias','Ceuta y Melilla','Portugal'],S.zona,'zona')}
+ ${st('Hora')}${tog('tog:auto','red','Hora automática','La toma de internet',S.auto)}${tog('tog:h24','info','Formato 24 horas','',S.h24)}
+ <div class="fila" style="cursor:default"><span class="tx"><span>Ahora son</span></span><span class="reloj">${hora()}</span></div>`,
+red:()=>S.red?`<div class="bien">${I.ok}Conectada a ${esc(S.red)}</div><button type="button" class="lk" data-a="otrared">Cambiar de red</button>`:
+ `${st('Redes cerca')}${REDES.map(r=>fila({a:'red:'+r.n,ico:'red',t:esc(r.n),s:r.l?'Protegida':'Abierta',on:S.redSel===r.n,der:`<span class="der2">${r.l?I.candado:''}${barras(r.s)}</span>`})+(S.redSel===r.n&&r.l?`<div class="sub"><div class="campo"><label for="clave">Contraseña de ${esc(r.n)}</label><input id="clave" type="password" autocomplete="off" value="${esc(S.clave)}"></div>${S.conectando?`<div class="carga">${I.carga}Conectando…</div>`:`<button type="button" class="btn pri" data-a="conectar" style="align-self:flex-start">Conectar</button>`}</div>`:'')).join('')}
+ <button type="button" class="lk" data-a="buscar">Buscar de nuevo</button>`,
+nombre:()=>`<div class="campo"><label for="nombre">Nombre de la pantalla</label><input id="nombre" type="text" maxlength="24" autocomplete="off" value="${esc(S.nombre)}"></div>
+ ${st('Ideas')}${chips(['Salón','Cocina','Dormitorio','Entrada','Despacho'],S.nombre,'sug')}
+ <div class="fila" style="cursor:default"><span class="ico">${I.red}</span><span class="tx"><b>En tu red se verá así</b><span id="slug">${slug(S.nombre)}</span></span></div>`,
+apps:()=>APPS.map(x=>fila({a:'app:'+x.k,ico:x.ico,t:x.t,s:x.s,on:S.apps[x.k],role:'checkbox',checked:S.apps[x.k],der:`<span class="caja ${S.apps[x.k]?'on':''}">${S.apps[x.k]?I.ok:''}</span>`})).join(''),
+ha:()=>S.ha==='buscando'?`<div class="carga">${I.carga}Buscando Home Assistant en tu red…</div>`:
+ S.ha==='conectado'?`<div class="bien">${I.ok}Conectado a ${esc(S.haDir)}. El panel se abrirá al terminar.</div>`:
+ `${st('Encontrado')}${fila({a:'haCon',ico:'casa',t:'Home Assistant',s:esc(S.haDir),der:S.ha==='conectando'?`<span class="der2">Conectando…</span>`:`<span class="der2">Conectar ${I.dcha}</span>`})}
+ ${st('O escríbelo a mano')}<div class="campo"><label for="hadir">Dirección</label><input id="hadir" type="text" autocomplete="off" placeholder="homeassistant.local:8123" value=""></div>`,
+snap:()=>S.snap==='buscando'?`<div class="carga">${I.carga}Buscando servidores de música…</div>`:
+ `${st('Servidores encontrados')}${['Servidor de música · snapserver.local','Música del salón · 192.168.1.20'].map((n,i)=>fila({a:'srv:'+i,ico:'altavoz',t:n.split(' · ')[0],s:n.split(' · ')[1],on:S.snapSrv===i,der:S.snapSrv===i?`<span class="der2" style="color:var(--menta)">${I.ok}</span>`:''})).join('')}`,
+pantalla:()=>`${st('Brillo')}<div class="rango"><input id="brillo" aria-label="Brillo" type="range" min="5" max="100" value="${S.brillo}"><output id="brout" for="brillo">${S.brillo} %</output></div>
+ ${st('Apagar la pantalla tras')}${chips(['1 min','5 min','30 min','Nunca'],S.apagar,'apagar')}`,
+privacidad:()=>`${tog('tog:mic','micro','Micrófono','Para asistentes de voz y llamadas. El botón de silencio lo corta siempre.',S.mic)}
+ ${tog('tog:cam','camara','Cámara','Para videollamadas. Desactivada de serie.',S.cam)}`,
+avanzado:()=>{const sec=(k,ico,t,s,cont)=>fila({a:'abrir:'+k,ico,t,s,der:`<span class="der2" style="transform:rotate(${S.abierto===k?180:0}deg)">${I.abajo}</span>`})+(S.abierto===k?`<div class="sub">${cont}</div>`:'');
+ return sec('ip','red','IP fija','Normalmente la da el router solo',`${tog('tog:ipFija','','Usar IP fija','',S.ipFija)}${S.ipFija?['IP','Puerta de enlace','DNS'].map((e,i)=>`<div class="campo"><label for="ip${i}">${e}</label><input id="ip${i}" type="text" inputmode="decimal" placeholder="${['192.168.1.50','192.168.1.1','192.168.1.1'][i]}"></div>`).join(''):''}`)
+ +sec('mac','chip','Dirección MAC',esc(S.mac),chips(['Mantener la de fábrica','Generar una nueva'],S.mac,'mac'))
+ +sec('cert','doc','Certificados propios',S.certs?`${S.certs} añadido`:'Para tus servidores con https propio',`<button type="button" class="btn sec" data-a="cert" style="align-self:flex-start">Añadir certificado (.crt o .pem)</button>`)
+ +sec('adb','usb','Depuración (ADB)',S.adb?'Activada':'Desactivada',`${tog('tog:adb','','Permitir ADB por USB y por red','',S.adb)}<div class="av">${I.aviso}<span>Con ADB activado, cualquiera en tu red podría controlar la pantalla. Actívalo solo mientras lo necesites.</span></div>`)},
+resumen:()=>{const sel=APPS.filter(x=>S.apps[x.k]).map(x=>x.t.replace('Panel de ','')).join(', ')||'Ninguna';
+ const f=[['region','Región y hora',`${S.zona} · ${S.h24?'24 h':'12 h'}`],['red','Wi-Fi',S.red||'Sin conectar'],['nombre','Nombre',esc(S.nombre)],['apps','Apps',sel],
+  ...(S.apps.ha?[['ha','Home Assistant',S.ha==='conectado'?esc(S.haDir):'Sin conectar']]:[]),...(S.apps.snap?[['snap','Altavoz de casa',S.snapSrv===null?'Sin elegir':['snapserver.local','192.168.1.20'][S.snapSrv]]]:[]),
+  ['pantalla','Pantalla',`Brillo ${S.brillo} % · se apaga: ${S.apagar.toLowerCase()}`],['privacidad','Privacidad',`Micrófono ${S.mic?'sí':'no'} · cámara ${S.cam?'sí':'no'}`],
+  ['avanzado','Avanzado',[S.ipFija&&'IP fija',S.mac!=='Mantener la de fábrica'&&'MAC nueva',S.certs&&'certificado',S.adb&&'ADB'].filter(Boolean).join(', ')||'Nada']];
+ return f.map(([p,t,v])=>fila({a:'ir:'+p,t,s:v,der:`<span class="der2">Cambiar ${I.dcha}</span>`})).join('')}
+};
+
+/* ---------- pantallas completas ---------- */
+/* Dibujo del lateral: el aparato con el icono del paso en su pantalla */
+const ICOP={
+  region:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  red:'<path d="M3 9a13 13 0 0 1 18 0M6.5 12.5a8 8 0 0 1 11 0M10 16a3 3 0 0 1 4 0"/><path d="M12 19.5h.01"/>',
+  nombre:'<path d="M4 12V4h8l8 8-8 8z"/><circle cx="8.5" cy="8.5" r="1.5"/>',
+  apps:'<rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/>',
+  ha:'<path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/>',
+  snap:'<path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>',
+  pantalla:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/>',
+  privacidad:'<path d="M12 3l8 3v6c0 4.5-3.5 8-8 9-4.5-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+  avanzado:'<path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/>',
+  resumen:'<path d="M10 6h10M10 12h10M10 18h10"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/>'
+};
+function ilus(p){
+  const pts=[];for(let r=0;r<3;r++)for(let c=0;c<21;c++)pts.push(`<circle cx="${20+c*4}" cy="${80+r*4}" r=".9" fill="#DDD6CA" fill-opacity=".45"/>`);
+  return `<svg class="il" viewBox="0 0 120 100" aria-hidden="true">
+  <path d="M20 8 H100 Q108 8 108.5 16 L111.5 86 Q112 94 104 94 H16 Q8 94 8.5 86 L11.5 16 Q12 8 20 8 Z" fill="#292724" stroke="#DDD6CA" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="54" y="13.5" width="12" height="5" rx="2.5" fill="#1B1A18"/>
+  <rect x="20" y="22" width="80" height="50" rx="3" fill="#1B1A18" stroke="#E0A85A" stroke-opacity=".5" stroke-width="1.2"/>
+  <svg x="47" y="34" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#E0A85A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICOP[p]||''}</svg>
+  ${pts.join('')}</svg>`;
+}
+function bienvenida(){return `<div class="centro anim">${aparato(210,false,true)}<h2>Hola</h2><p>Vamos a preparar tu pantalla. Son unos minutos.</p>
+ <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:6px"><div class="st">Idioma</div>${chips(['Español','English','Català','Galego','Euskara','Português'],S.idioma,'idioma')}</div>
+ <button type="button" class="btn pri" data-a="sig" style="margin-top:10px">Empezar ${I.dcha}</button></div>`}
+function acciones(){return ['Idioma y hora',S.red?`Wi-Fi: ${S.red}`:null,`Nombre: ${S.nombre}`,...APPS.filter(x=>S.apps[x.k]).map(x=>`Instalar ${x.t.replace('Panel de ','')}`),'Pantalla y privacidad'].filter(Boolean)}
+function aplicando(){const a=acciones();return `<div class="centro">${aparato(130,false,false)}<h2 style="font-size:40px">Preparando tu pantalla</h2><p>No la apagues ni la desenchufes.</p>
+ <div class="lista">${a.map((t,i)=>`<div class="${i<S.hechas?'ok':i===S.hechas?'ya':''}">${i<S.hechas?I.ok:i===S.hechas?I.carga:ic('<circle cx="12" cy="12" r="3"/>')}${esc(t)}</div>`).join('')}</div></div>`}
+function final(){return `<div class="centro anim">${aparato(230,true,true)}<h2>Todo listo</h2><p>${esc(S.nombre)} ya está preparada.</p>
+ <button type="button" class="btn pri" data-a="inicio" style="margin-top:10px">Empezar a usarla ${I.dcha}</button></div>`}
+function inicio(){return `<div class="centro anim"><div class="reloj" style="font-size:150px">${hora()}</div><p>${esc(S.nombre)}</p><p style="font-size:16px;color:var(--texto3)">Aquí termina el asistente y empieza Home.</p></div>`}
+
+/* Encendido: splash = primer fotograma de la escena; luego la entrada (7 s) y el bucle de 3 s, como en Android */
+const fase=document.getElementById('fase'),FASE0=fase.textContent;
+let reloj=null,cuadro=null;
+function pintar(tt){const cv=document.getElementById('bootc');if(cv)window.escenaHome(cv.getContext('2d'),tt)}
+function parar(){clearTimeout(reloj);cancelAnimationFrame(cuadro)}
+function arrancar(){
+  parar();S=NUEVO();S.paso='splash';render();pintar(0);
+  reloj=setTimeout(()=>{S.paso='boot';render();const t0=performance.now();
+    const paso=ahora=>{const e=(ahora-t0)/1000;if(e>=10)return ir('bienvenida');pintar(e<7?e:16+((e-7)%3));cuadro=requestAnimationFrame(paso)};
+    cuadro=requestAnimationFrame(paso)},1800);
+}
+function render(animar){
+  fase.textContent=S.paso==='splash'?'Ahora: splash, la imagen fija que sale nada más encender. Toca para saltar.':S.paso==='boot'?'Ahora: animación de arranque, mientras carga Android. Toca para saltar.':FASE0;
+  if(S.paso==='splash'||S.paso==='boot'){pant.innerHTML=`<div class="boot" data-a="saltar"><canvas id="bootc" width="1280" height="800"></canvas></div>`;return}
+  if(S.paso==='bienvenida'){pant.innerHTML=bienvenida();return}
+  if(S.paso==='aplicando'){pant.innerHTML=aplicando();return}
+  if(S.paso==='final'){pant.innerHTML=final();return}
+  if(S.paso==='inicio'){pant.innerHTML=inicio();return}
+  const L=pasos(),i=L.indexOf(S.paso),inf=INFO[S.paso];
+  const sigTxt=S.paso==='resumen'?'Aplicar':S.paso==='red'&&!S.red?'Omitir':S.paso==='avanzado'?'Seguir':'Siguiente';
+  pant.innerHTML=`<div class="top"><div class="marca">${aparato(30,true,false)}Home</div><div class="prog">${L.map((_,j)=>`<i class="${j<i?'hecho':j===i?'ahora':''}"></i>`).join('')}</div><div class="npaso">Paso ${i+1} de ${L.length}</div></div>
+  <div class="cu"><div class="izq ${animar?'anim':''}">${ilus(S.paso)}<h2>${inf.t}</h2><p>${inf.d}</p>${inf.n?`<div class="nota">${I.info}<span>${inf.n}</span></div>`:''}</div><div class="der ${animar?'anim':''}">${V[S.paso]()}</div></div>
+  <div class="pie"><button type="button" class="btn sec" data-a="atr">${I.izq} Atrás</button><button type="button" class="btn pri" data-a="sig">${sigTxt} ${I.dcha}</button></div>`;
+}
+function ir(p){S.paso=p;render(true);entrar()}
+function entrar(){
+  if(S.paso==='ha'&&S.ha==='nada'){S.ha='buscando';render();setTimeout(()=>{S.ha='encontrado';S.haDir='homeassistant.local:8123';if(S.paso==='ha')render()},1500)}
+  if(S.paso==='snap'&&S.snap==='nada'){S.snap='buscando';render();setTimeout(()=>{S.snap='encontrado';if(S.paso==='snap')render()},1300)}
+  if(S.paso==='aplicando'){S.hechas=0;render();const n=acciones().length;const t=setInterval(()=>{S.hechas++;if(S.hechas>n){clearInterval(t);ir('final')}else render()},650)}
+}
+function act(a){
+  const k=a.indexOf(':'),c=k<0?a:a.slice(0,k),v=k<0?'':a.slice(k+1);const L=pasos();
+  switch(c){
+    case 'saltar':parar();return ir('bienvenida');
+    case 'sig':if(S.paso==='bienvenida')return ir(L[0]);if(S.paso==='resumen')return ir('aplicando');return ir(L[L.indexOf(S.paso)+1]);
+    case 'atr':{const i=L.indexOf(S.paso);return ir(i>0?L[i-1]:'bienvenida')}
+    case 'ir':return ir(v);
+    case 'idioma':S.idioma=v;break;
+    case 'zona':S.zona=v;break;
+    case 'tog':S[v]=!S[v];break;
+    case 'red':if(S.redSel===v)return;S.redSel=v;S.clave='';if(!REDES.find(r=>r.n===v).l){S.red=v}break;
+    case 'conectar':S.conectando=true;render();setTimeout(()=>{S.conectando=false;S.red=S.redSel;render()},1400);return;
+    case 'otrared':S.red=null;S.redSel=null;break;
+    case 'buscar':S.redSel=null;break;
+    case 'sug':S.nombre=v;break;
+    case 'app':S.apps[v]=!S.apps[v];break;
+    case 'haCon':if(S.ha!=='encontrado')return;S.ha='conectando';render();setTimeout(()=>{S.ha='conectado';if(S.paso==='ha')render()},1200);return;
+    case 'srv':S.snapSrv=+v;break;
+    case 'apagar':S.apagar=v;break;
+    case 'abrir':S.abierto=S.abierto===v?null:v;break;
+    case 'mac':S.mac=v;break;
+    case 'cert':S.certs=1;break;
+    case 'inicio':S.paso='inicio';break;
+  }
+  render();
+}
+pant.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b)act(b.dataset.a)});
+pant.addEventListener('input',e=>{const t=e.target;
+  if(t.id==='nombre'){S.nombre=t.value;const s=document.getElementById('slug');if(s)s.textContent=slug(t.value)}
+  if(t.id==='clave')S.clave=t.value;
+  if(t.id==='brillo'){S.brillo=+t.value;document.getElementById('brout').textContent=t.value+' %'}
+  if(t.id==='hadir'&&t.value.trim()){S.haDir=t.value.trim();if(S.ha==='nada'||S.ha==='buscando')S.ha='encontrado'}
+});
+document.getElementById('reini').onclick=arrancar;
+function escala(){const s=Math.min(1,marco.clientWidth/1360);ap.style.transform=`scale(${s})`;marco.style.height=(1010*s)+'px'}
+window.addEventListener('resize',escala);
+setInterval(()=>{if(S.paso==='region'||S.paso==='inicio'){const r=pant.querySelector('.reloj');if(r)r.textContent=hora()}},10000);
+document.fonts.load('600 86px Inter').finally(arrancar);escala();
+})();
+</script>
+</body>
+</html>
