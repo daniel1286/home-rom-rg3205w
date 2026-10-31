@@ -24,7 +24,7 @@ This guide explains how to install Home on an Askey RG3205W from a Windows PC. I
 6. [Installing Home](#6-installing-home)
 7. [First boot](#7-first-boot)
 8. [Setup wizard](#8-setup-wizard)
-9. [Updates and root](#9-updates-and-root)
+9. [Updates, ADB and root](#9-updates-adb-and-root)
 10. [If something goes wrong](#10-if-something-goes-wrong)
 11. [Backup and rescue over EDL](#11-backup-and-rescue-over-edl)
 
@@ -338,11 +338,28 @@ The **Home Assistant** and **Home speaker** steps only show up if you ticked the
 
 The wizard shows the result of everything it does. If you changed the MAC or added certificates, it reboots once to apply them.
 
-## 9. Updates and root
+## 9. Updates, ADB and root
 
-**Updates.** When I publish a new version in this repository, the device will let you know. You'll find it under **Settings → System**, in the updates section: tap to download it and choose when to install it. It reboots on its own, installs it from the recovery and boots back up with your data intact. It only accepts updates signed by me.
+**Updates.** They're installed by the **Updates** app, which also opens from **Settings → System → System updates**. It looks for new versions in this repository's releases, shows you what's new and downloads it when you want. Before installing it checks the signature, that it's newer than yours and the size. The device reboots into the recovery, installs it and comes back to Home with your apps, settings and data. It only accepts updates signed by me.
 
-**Root.** Magisk comes preinstalled. If an app asks for root, Magisk will ask you before granting it. If you don't need it, just don't use it.
+**ADB.** It's off by default. There are two ways to turn it on:
+
+- In the setup wizard, under **Advanced options → Debugging (ADB)**. It's turned on over USB and Wi-Fi.
+- Afterwards, from Settings: in **About device**, tap **Build number** seven times so that **Developer options** show up (under **Settings → System**). Turn on **USB debugging** there.
+
+The first time you connect, the device asks you on screen to authorize the PC.
+
+Over Wi-Fi it uses Android's **Wireless debugging**, in the same developer options. Open it, tap **Pair device with pairing code** and type the address, port and code shown on screen on the PC:
+
+```powershell
+.\platform-tools\adb.exe pair <IP>:<pairing port> <code>
+.\platform-tools\adb.exe connect <IP>:<port>
+```
+
+> [!WARNING]
+> With ADB on, anyone with access to your network can try to control the device. Turn it off when you're done.
+
+**Root.** Magisk is in the boot image, but root is off by default. You turn it on in the setup wizard, under **Advanced options → Root (Magisk)**: the Magisk app gets installed and, every time an app asks for root, Magisk asks you before granting it.
 
 **Recovery.** Home comes with TWRP in its own design. It's what installs updates, and from it you can go to fastboot with **Reboot → Bootloader**.
 

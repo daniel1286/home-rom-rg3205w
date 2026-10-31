@@ -24,7 +24,7 @@ Esta guía explica cómo instalar Home en un Askey RG3205W desde un PC con Windo
 6. [Instalar Home](#6-instalar-home)
 7. [Primer arranque](#7-primer-arranque)
 8. [Asistente de configuración](#8-asistente-de-configuración)
-9. [Actualizaciones y root](#9-actualizaciones-y-root)
+9. [Actualizaciones, ADB y root](#9-actualizaciones-adb-y-root)
 10. [Si algo va mal](#10-si-algo-va-mal)
 11. [Copia de seguridad y rescate por EDL](#11-copia-de-seguridad-y-rescate-por-edl)
 
@@ -338,11 +338,28 @@ Los pasos de **Home Assistant** y **Altavoz de casa** solo salen si los has marc
 
 El asistente enseña el resultado de cada cosa que hace. Si cambiaste la MAC o añadiste certificados, se reinicia una vez para aplicarlos.
 
-## 9. Actualizaciones y root
+## 9. Actualizaciones, ADB y root
 
-**Actualizaciones.** Cuando publique una versión nueva en este repositorio, el aparato te avisará. La encuentras en **Ajustes → Sistema**, en el apartado de actualizaciones: pulsa para descargarla y elige cuándo instalarla. Se reinicia solo, la instala desde el recovery y vuelve a arrancar con tus datos intactos. Solo acepta actualizaciones firmadas por mí.
+**Actualizaciones.** Las instala la app **Actualizaciones**, que también se abre desde **Ajustes → Sistema → Actualizaciones del sistema**. Busca versiones nuevas en las releases de este repositorio, te enseña qué traen y la descarga cuando tú quieras. Antes de instalarla comprueba la firma, que sea más nueva que la tuya y el tamaño. El aparato reinicia en el recovery, la instala y vuelve a Home con tus apps, ajustes y datos. Solo acepta actualizaciones firmadas por mí.
 
-**Root.** Magisk viene instalado. Si una app pide permisos de root, Magisk te preguntará antes de dárselos. Si no lo necesitas, simplemente no lo uses.
+**ADB.** Viene desactivado. Se activa de dos formas:
+
+- En el asistente, en **Opciones avanzadas → Depuración (ADB)**. Queda activado por USB y por Wi-Fi.
+- Después, desde Ajustes: en **Información del dispositivo**, pulsa siete veces en **Número de compilación** para que aparezcan las **Opciones para desarrolladores** (en **Ajustes → Sistema**). Ahí activa **Depuración por USB**.
+
+La primera vez que te conectes, el aparato te pedirá en pantalla que autorices el PC.
+
+Por Wi-Fi se usa la **Depuración inalámbrica** de Android, en las mismas opciones para desarrolladores. Entra en ella, pulsa **Vincular dispositivo con código de vinculación** y escribe en el PC la dirección, el puerto y el código que salen en pantalla:
+
+```powershell
+.\platform-tools\adb.exe pair <IP>:<puerto de vinculación> <código>
+.\platform-tools\adb.exe connect <IP>:<puerto>
+```
+
+> [!WARNING]
+> Con ADB activado, quien tenga acceso a tu red puede intentar controlar el aparato. Apágalo cuando termines.
+
+**Root.** Magisk va en el boot, pero el root viene apagado. Se activa en el asistente, en **Opciones avanzadas → Root (Magisk)**: se instala la app de Magisk y, cada vez que una app pida root, Magisk te pregunta antes de dárselo.
 
 **Recovery.** Home lleva TWRP con su propio diseño. Es el que instala las actualizaciones, y desde él puedes ir a fastboot con **Reiniciar → Bootloader**.
 

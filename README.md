@@ -4,7 +4,7 @@
 
 <p align="center">
   <b>Android 15 para el Askey RG3205W</b><br>
-  Compilado para este aparato. Limpio, cifrado y listo en unos minutos.
+  Una segunda vida para tu pantalla de casa: limpia, cifrada y lista en unos minutos.
 </p>
 
 <p align="center">
@@ -12,10 +12,12 @@
   <img src="https://img.shields.io/badge/LineageOS-22.2-E0A85A?style=flat-square&labelColor=1B1A18&logo=lineageos&logoColor=E0A85A" alt="LineageOS 22.2">
   <img src="https://img.shields.io/badge/kernel-4.9-E0A85A?style=flat-square&labelColor=1B1A18&logo=linux&logoColor=E0A85A" alt="Kernel 4.9">
   <img src="https://img.shields.io/badge/licencia-Apache--2.0-E0A85A?style=flat-square&labelColor=1B1A18" alt="Licencia Apache-2.0">
-  <a href="https://github.com/daniel1286/home-rom-rg3205w/releases/latest"><img src="https://img.shields.io/github/v/release/daniel1286/home-rom-rg3205w?label=versi%C3%B3n&style=flat-square&labelColor=1B1A18&color=E0A85A" alt="Versión"></a>
+  <a href="https://github.com/daniel1286/home-rom-rg3205w/releases/latest"><img src="https://img.shields.io/github/v/release/daniel1286/home-rom-rg3205w?label=versi%C3%B3n&cacheSeconds=3600&style=flat-square&labelColor=1B1A18&color=E0A85A" alt="Versión"></a>
 </p>
 
 <p align="center">
+  <a href="https://github.com/daniel1286/home-rom-rg3205w/releases/latest"><b>Descargar</b></a>
+  &nbsp;·&nbsp;
   <a href="https://daniel1286.github.io/home-rom-rg3205w/"><b>Probar la demo</b></a>
   &nbsp;·&nbsp;
   <a href="#qué-trae"><b>Qué trae</b></a>
@@ -34,9 +36,22 @@
 
 ## Qué es Home
 
-El Askey RG3205W es una pantalla de 8 pulgadas con altavoces y micrófonos que viene con Android 8.1 y el software del operador. Home lo cambia por Android 15.
+El Askey RG3205W tiene más hardware del que su software deja ver: un Snapdragon 625 de ocho núcleos, pantalla de 8 pulgadas, dos altavoces y cuatro micrófonos. El software de fábrica se quedó en Android 8.1, con un kernel de 32 bits, el parche de seguridad de octubre de 2021 y las apps del operador.
 
-No es una ROM de otro móvil adaptada: está compilada desde el código de LineageOS solo para este aparato, con su propio kernel y sus propios controladores. Viene limpia, sin apps del operador, y la primera vez que la enciendes un asistente te la deja lista en unos minutos, como panel de Home Assistant, como altavoz de casa o como tablet normal.
+Home es Android 15 compilado desde el código de LineageOS solo para este aparato. No es la ROM de otro móvil adaptada: el kernel, los controladores y el árbol de dispositivo están hechos o ajustados para el RG3205W, y no lleva nada que no hayas elegido tú.
+
+La primera vez que la enciendes, un asistente te pregunta para qué la quieres y la deja lista en unos minutos:
+
+- **Panel de Home Assistant**, en la pared o en la encimera, siempre encendido y a pantalla completa.
+- **Altavoz de casa**, sonando a la vez que el resto de altavoces con Snapcast.
+- **Tablet de 8 pulgadas**, con las apps que instales desde Aurora Store o F-Droid.
+
+| | Software de fábrica | Home 2.0 |
+|---|---|---|
+| Android | 8.1 | 15 (LineageOS 22.2) |
+| Kernel | 3.18, 32 bits | 4.9, 64 bits |
+| Parche de seguridad | Octubre de 2021 | Octubre de 2026 |
+| Apps preinstaladas | Las del operador | Solo las que eliges |
 
 ## Qué trae
 
@@ -208,9 +223,9 @@ Para quien quiera saber qué hay por dentro.
 | Parche de seguridad | Octubre de 2026 |
 | Datos | Cifrado por ficheros (FBE) |
 | Actualizaciones | App propia, Actualizaciones, que busca en las releases de este repositorio. Solo instala paquetes con mi firma y de una versión más nueva; los instala el TWRP sin borrar datos. También se abre desde Ajustes |
-| Root | Magisk va en el boot, pero el root está apagado de serie. Se activa en el asistente, en «Opciones avanzadas» |
+| Root | Magisk va en el boot, pero el root está apagado de serie. Se activa en el asistente, en «Opciones avanzadas» ([cómo](guias/INSTALAR.md#9-actualizaciones-adb-y-root)) |
 | Recovery | TWRP con el diseño de Home, con su propia pantalla para instalar actualizaciones |
-| Depuración | ADB desactivado de serie |
+| Depuración | ADB desactivado de serie. Se activa en el asistente o en las opciones para desarrolladores, por USB o por Wi-Fi ([cómo](guias/INSTALAR.md#9-actualizaciones-adb-y-root)) |
 
 </details>
 
@@ -232,6 +247,23 @@ La **[guía de instalación](guias/INSTALAR.md)** lo explica todo paso a paso y 
 
 > [!WARNING]
 > Instalarla borra todos los datos del aparato. Cambiar el software puede anular la garantía, así que hazlo bajo tu responsabilidad.
+
+## Preguntas frecuentes
+
+**¿Necesito una cuenta de Google?**
+No. Aurora Store descarga las apps de Google Play sin cuenta y F-Droid trae las apps libres.
+
+**¿Se borran mis datos al actualizar?**
+No. Solo borra la instalación desde el PC. Las actualizaciones de la app Actualizaciones conservan tus apps, ajustes y datos.
+
+**¿Cómo activo ADB o root?**
+En el asistente, en «Opciones avanzadas». Si ya lo has configurado, la [guía](guias/INSTALAR.md#9-actualizaciones-adb-y-root) explica cómo activar ADB después.
+
+**¿Puedo volver al software de fábrica?**
+Antes de instalar, haz la copia completa por EDL que explica la [guía](guias/INSTALAR.md#11-copia-de-seguridad-y-rescate-por-edl). Es la única forma de guardar el software de fábrica y los datos propios de tu aparato.
+
+**¿Funciona en el mío?**
+Home es para el Askey RG3205W, Rev4 y Rev5. Si algo no te va, cuéntamelo en un informe de prueba.
 
 ## ¿Ya lo has instalado?
 
