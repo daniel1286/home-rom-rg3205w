@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 392" font-family="Segoe UI, Inter, Arial, sans-serif" role="img" aria-label="Cambiar a la navegación con 3 botones">
+<defs><marker id="p" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#E0A85A"/></marker></defs>
+<rect width="960" height="392" fill="#1B1A18"/>
+<text x="480" y="46" font-size="26" fill="#F3EFE8" font-weight="700" text-anchor="middle">¿Prefieres los botones de siempre?</text>
+<text x="480" y="74" font-size="16" fill="#ABA59B" text-anchor="middle">Se cambia en un momento desde Ajustes, sin reiniciar, y se puede volver atrás cuando quieras</text>
+<rect x="110.0" y="100" width="300" height="188" rx="16" fill="#24221F" stroke="#3A3733" stroke-width="2"/><rect x="118.0" y="108" width="284" height="172" rx="8" fill="#34312C"/>
+<rect x="228.0" y="267" width="64" height="5" rx="2.5" fill="#F3EFE8"/>
+<text x="260" y="198" fill="#847E74" font-size="15" text-anchor="middle">solo una barrita abajo</text>
+<line x1="432" y1="194" x2="520" y2="194" stroke="#E0A85A" stroke-width="4" stroke-linecap="round" marker-end="url(#p)"/>
+<rect x="550.0" y="100" width="300" height="188" rx="16" fill="#24221F" stroke="#3A3733" stroke-width="2"/><rect x="558.0" y="108" width="284" height="172" rx="8" fill="#34312C"/>
+<path d="M559.0 247 H841.0 V270 a9 9 0 0 1 -9 9 H568.0 a9 9 0 0 1 -9 -9 Z" fill="#23211E"/>
+<g fill="none" stroke="#F3EFE8" stroke-width="2.5" stroke-linejoin="round"><path d="M755.0 254 L755.0 272 L741.0 263 Z"/><circle cx="783.0" cy="263" r="7"/><rect x="810.0" y="256" width="14" height="14" rx="2"/></g>
+<text x="700" y="186" fill="#847E74" font-size="15" text-anchor="middle">Atrás, Inicio y Recientes</text>
+<text x="260" y="320" font-size="18" fill="#F3EFE8" font-weight="700" text-anchor="middle">Navegación por gestos</text>
+<text x="700" y="320" font-size="18" fill="#E0A85A" font-weight="700" text-anchor="middle">Navegación con 3 botones</text>
+<text x="260" y="342" font-size="14" fill="#ABA59B" text-anchor="middle">así viene Home</text>
+<text x="700" y="342" font-size="14" fill="#ABA59B" text-anchor="middle">opcional</text>
+<text x="480" y="378" font-size="15" fill="#ABA59B" text-anchor="middle">Ajustes → Sistema → Gestos → Navegación del sistema → Navegación con 3 botones</text>
+</svg>

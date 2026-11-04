@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" font-family="Segoe UI, Inter, Arial, sans-serif" role="img" aria-label="Elegir «Reboot to bootloader»">
+<rect width="960" height="470" fill="#1B1A18"/>
+<text x="480.0" y="46" font-size="26" fill="#F3EFE8" font-weight="700" text-anchor="middle">Elegir «Reboot to bootloader»</text>
+<rect x="26" y="66" width="548" height="358" rx="18" fill="#2E2B27" stroke="#3A3733" stroke-width="2"/>
+<rect x="40" y="80" width="520" height="330" fill="#000"/>
+<text x="56" y="108" font-size="15" fill="#F5A623" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">Android Recovery</text>
+<text x="56" y="130" font-size="15" fill="#F5A623" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">Use volume up/down and power.</text>
+<text x="56" y="166" font-size="16" fill="#5BB2F0" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">Reboot system now</text>
+<rect x="48" y="171" width="504" height="26" fill="#3F8FD8"/>
+<rect x="44" y="167" width="512" height="34" rx="6" fill="none" stroke="#E0A85A" stroke-width="3"/>
+<text x="56" y="190" font-size="16" fill="#000" font-weight="700" text-anchor="start" font-family="Consolas, Menlo, monospace">Reboot to bootloader</text>
+<text x="56" y="214" font-size="16" fill="#5BB2F0" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">Apply update from ADB</text>
+<text x="56" y="238" font-size="16" fill="#5BB2F0" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">Apply update from SD card</text>
+<text x="56" y="262" font-size="16" fill="#5BB2F0" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">Wipe data/factory reset</text>
+<text x="56" y="286" font-size="16" fill="#5BB2F0" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">Wipe cache partition</text>
+<text x="56" y="310" font-size="16" fill="#5BB2F0" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">Mount /system</text>
+<text x="56" y="334" font-size="16" fill="#5BB2F0" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">View recovery logs</text>
+<text x="56" y="358" font-size="16" fill="#5BB2F0" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">Run graphics test</text>
+<text x="56" y="382" font-size="16" fill="#5BB2F0" font-weight="400" text-anchor="start" font-family="Consolas, Menlo, monospace">Power off</text>
+<circle cx="612" cy="120" r="18" fill="#E0A85A"/><text x="612" y="127" font-size="20" fill="#1B1A18" font-weight="700" text-anchor="middle">1</text>
+<text x="642" y="112" font-size="17" fill="#F3EFE8" font-weight="700" text-anchor="start">Con la pantalla en negro,</text>
+<text x="642" y="136" font-size="16" fill="#ABA59B" font-weight="400" text-anchor="start">mantén Encendido y pulsa Vol +</text>
+<circle cx="612" cy="202" r="18" fill="#E0A85A"/><text x="612" y="209" font-size="20" fill="#1B1A18" font-weight="700" text-anchor="middle">2</text>
+<text x="642" y="194" font-size="17" fill="#F3EFE8" font-weight="700" text-anchor="start">Vol + y Vol − para</text>
+<text x="642" y="218" font-size="16" fill="#ABA59B" font-weight="400" text-anchor="start">moverte por la lista</text>
+<circle cx="612" cy="284" r="18" fill="#E0A85A"/><text x="612" y="291" font-size="20" fill="#1B1A18" font-weight="700" text-anchor="middle">3</text>
+<text x="642" y="276" font-size="17" fill="#F3EFE8" font-weight="700" text-anchor="start">Encendido para</text>
+<text x="642" y="300" font-size="16" fill="#ABA59B" font-weight="400" text-anchor="start">elegir la opción</text>
+<circle cx="612" cy="366" r="18" fill="#E0A85A"/><text x="612" y="373" font-size="20" fill="#1B1A18" font-weight="700" text-anchor="middle">4</text>
+<text x="642" y="358" font-size="17" fill="#F3EFE8" font-weight="700" text-anchor="start">Ya en fastboot,</text>
+<text x="642" y="382" font-size="16" fill="#ABA59B" font-weight="400" text-anchor="start">conecta el USB al PC</text>
+<text x="480.0" y="452" font-size="14" fill="#847E74" font-weight="400" text-anchor="middle">Menú del recovery original de Movistar, con las opciones de su firmware. Los colores pueden variar.</text>
+</svg>

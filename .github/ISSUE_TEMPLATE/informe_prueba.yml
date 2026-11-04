@@ -1,0 +1,78 @@
+name: Informe de prueba / Test report
+description: Cuenta cómo ha ido Home en tu aparato. / Tell me how Home runs on your device.
+title: "[Informe] "
+labels: ["informe de prueba"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por probar Home. Cada informe me ayuda a saber en qué aparatos funciona y qué falta por pulir. Si algo falla, cuéntalo aunque el resto vaya bien.
+
+        Thanks for trying Home. Every report helps me know which devices it works on and what still needs work. If something fails, say so even if everything else is fine.
+
+  - type: dropdown
+    id: revision
+    attributes:
+      label: Revisión del aparato / Device revision
+      options:
+        - Rev4 (USB-C)
+        - Rev5 (J4902)
+        - No lo sé / Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Versión de Home / Home version
+      description: Ajustes → Información del tablet / Settings → About tablet
+    validations:
+      required: true
+
+  - type: dropdown
+    id: instalacion
+    attributes:
+      label: Instalación / Installation
+      options:
+        - Sin problemas / No problems
+        - Con algún problema / With some problems
+        - No se pudo instalar / Couldn't install
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: funciona
+    attributes:
+      label: Qué funciona / What works
+      description: Marca lo que has comprobado. / Tick what you've checked.
+      options:
+        - label: Pantalla y táctil / Display and touch
+        - label: Wi-Fi
+        - label: Bluetooth
+        - label: Altavoces / Speakers
+        - label: Micrófonos / Microphones
+        - label: Cámara / Camera
+        - label: Botones de volumen / Volume buttons
+        - label: Asistente de configuración / Setup wizard
+        - label: Actualizaciones / Updates
+
+  - type: checkboxes
+    id: apps
+    attributes:
+      label: Opciones del asistente / Wizard options
+      description: Solo las que hayas elegido y funcionen. / Only the ones you picked that work.
+      options:
+        - label: Panel de Home Assistant (Fully Kiosk)
+        - label: Altavoz de casa / Home speaker (Snapcast)
+        - label: Control desde el PC / PC remote control (droidVNC-NG)
+
+  - type: textarea
+    id: problemas
+    attributes:
+      label: Problemas / Problems
+      description: Qué falló, en qué paso y qué mensaje salió. Las capturas ayudan. / What failed, at which step and what message showed up. Screenshots help.
+
+  - type: textarea
+    id: comentarios
+    attributes:
+      label: Comentarios / Comments

@@ -1,0 +1,35 @@
+title: "[Idea] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por proponer. Mira antes si alguien ya ha pedido lo mismo; si es así, vota con 👍 en esa idea.
+
+        Thanks for the suggestion. Please check first whether someone has already asked for the same thing; if so, upvote it with 👍.
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: La idea / The idea
+      description: Qué te gustaría que hiciera Home. / What you'd like Home to do.
+    validations:
+      required: true
+
+  - type: textarea
+    id: para_que
+    attributes:
+      label: Para qué la usarías / What you'd use it for
+      description: Cómo usas tu pantalla y en qué te ayudaría. / How you use your screen and how it would help.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: uso
+    attributes:
+      label: Cómo usas Home / How you use Home
+      multiple: true
+      options:
+        - Panel de Home Assistant / Home Assistant panel
+        - Altavoz de casa / Home speaker
+        - Tablet normal / Regular tablet
+        - Todavía no la he instalado / Not installed yet
