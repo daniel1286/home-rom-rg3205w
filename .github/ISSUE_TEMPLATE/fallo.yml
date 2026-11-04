@@ -1,0 +1,55 @@
+name: Fallo / Bug
+description: Algo no funciona como debería. / Something doesn't work as it should.
+title: "[Fallo] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Antes de abrirlo, mira si ya hay una incidencia igual. Si es una duda y no un fallo, pregunta en Discussions.
+
+        Before opening it, check whether there's already a similar issue. If it's a question and not a bug, ask in Discussions.
+
+  - type: dropdown
+    id: revision
+    attributes:
+      label: Revisión del aparato / Device revision
+      options:
+        - Rev4 (USB-C)
+        - Rev5 (J4902)
+        - No lo sé / Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Versión de Home / Home version
+      description: Ajustes → Información del tablet / Settings → About tablet
+    validations:
+      required: true
+
+  - type: textarea
+    id: que_pasa
+    attributes:
+      label: Qué pasa / What happens
+      description: Qué falla y qué mensaje sale. Las capturas ayudan. / What fails and what message shows up. Screenshots help.
+    validations:
+      required: true
+
+  - type: textarea
+    id: pasos
+    attributes:
+      label: Cómo repetirlo / How to reproduce it
+      description: Los pasos para que vuelva a pasar. / The steps to make it happen again.
+      placeholder: |
+        1.
+        2.
+        3.
+
+  - type: textarea
+    id: registro
+    attributes:
+      label: Registro / Log
+      description: Si puedes, la salida de `adb logcat` cuando falla. / If you can, the `adb logcat` output when it fails.
+      render: text

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Dudas / Questions
+    url: https://github.com/daniel1286/home-rom-rg3205w/discussions
+    about: Para preguntas sobre la instalación o el uso. / For questions about installing or using Home.
+  - name: Demo del asistente / Setup wizard demo
+    url: https://daniel1286.github.io/home-rom-rg3205w/
+    about: Pruébalo en el navegador antes de instalar nada. / Try it in your browser before installing anything.

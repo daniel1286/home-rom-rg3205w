@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 250" font-family="Segoe UI, Inter, Arial, sans-serif" role="img" aria-label="Cómo es el proceso">
+<rect width="960" height="250" fill="#1B1A18"/>
+<text x="480.0" y="46" font-size="26" fill="#F3EFE8" font-weight="700" text-anchor="middle">Cómo es el proceso</text>
+<text x="480.0" y="76" font-size="17" fill="#ABA59B" font-weight="400" text-anchor="middle">Siete pasos. Los cinco primeros solo se hacen una vez.</text>
+<line x1="90" y1="140" x2="870" y2="140" stroke="#3A3733" stroke-width="4"/>
+<circle cx="90" cy="140" r="30" fill="#24221F" stroke="#E0A85A" stroke-width="3"/>
+<text x="90" y="149" font-size="24" fill="#E0A85A" font-weight="700" text-anchor="middle">1</text>
+<text x="90" y="198" font-size="18" fill="#F3EFE8" font-weight="700" text-anchor="middle">Descargar</text>
+<text x="90" y="222" font-size="14" fill="#ABA59B" font-weight="400" text-anchor="middle">Prepara la carpeta</text>
+<circle cx="220" cy="140" r="30" fill="#24221F" stroke="#E0A85A" stroke-width="3"/>
+<text x="220" y="149" font-size="24" fill="#E0A85A" font-weight="700" text-anchor="middle">2</text>
+<text x="220" y="198" font-size="18" fill="#F3EFE8" font-weight="700" text-anchor="middle">Conectar</text>
+<text x="220" y="222" font-size="14" fill="#ABA59B" font-weight="400" text-anchor="middle">Rev4 o Rev5</text>
+<circle cx="350" cy="140" r="30" fill="#24221F" stroke="#E0A85A" stroke-width="3"/>
+<text x="350" y="149" font-size="24" fill="#E0A85A" font-weight="700" text-anchor="middle">3</text>
+<text x="350" y="198" font-size="18" fill="#F3EFE8" font-weight="700" text-anchor="middle">Drivers</text>
+<text x="350" y="222" font-size="14" fill="#ABA59B" font-weight="400" text-anchor="middle">Primera vez</text>
+<circle cx="480" cy="140" r="30" fill="#24221F" stroke="#E0A85A" stroke-width="3"/>
+<text x="480" y="149" font-size="24" fill="#E0A85A" font-weight="700" text-anchor="middle">4</text>
+<text x="480" y="198" font-size="18" fill="#F3EFE8" font-weight="700" text-anchor="middle">Fastboot</text>
+<text x="480" y="222" font-size="14" fill="#ABA59B" font-weight="400" text-anchor="middle">Con los botones</text>
+<circle cx="610" cy="140" r="30" fill="#24221F" stroke="#E0A85A" stroke-width="3"/>
+<text x="610" y="149" font-size="24" fill="#E0A85A" font-weight="700" text-anchor="middle">5</text>
+<text x="610" y="198" font-size="18" fill="#F3EFE8" font-weight="700" text-anchor="middle">Desbloquear</text>
+<text x="610" y="222" font-size="14" fill="#ABA59B" font-weight="400" text-anchor="middle">Si hace falta</text>
+<circle cx="740" cy="140" r="30" fill="#E0A85A" stroke="#E0A85A" stroke-width="3"/>
+<text x="740" y="149" font-size="24" fill="#1B1A18" font-weight="700" text-anchor="middle">6</text>
+<text x="740" y="198" font-size="18" fill="#F3EFE8" font-weight="700" text-anchor="middle">Instalar</text>
+<text x="740" y="222" font-size="14" fill="#ABA59B" font-weight="400" text-anchor="middle">Unos minutos</text>
+<circle cx="870" cy="140" r="30" fill="#24221F" stroke="#E0A85A" stroke-width="3"/>
+<text x="870" y="149" font-size="24" fill="#E0A85A" font-weight="700" text-anchor="middle">7</text>
+<text x="870" y="198" font-size="18" fill="#F3EFE8" font-weight="700" text-anchor="middle">Asistente</text>
+<text x="870" y="222" font-size="14" fill="#ABA59B" font-weight="400" text-anchor="middle">Y a usarla</text>
+</svg>

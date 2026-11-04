@@ -1,0 +1,36 @@
+title: "[Mi Home] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Enseña cómo tienes tu Askey con Home: dónde la has puesto, para qué la usas o cómo has hecho el cable del Rev5. Ayuda mucho a quien está pensando en instalarla.
+
+        Show how you've set up your Askey with Home: where it lives, what you use it for or how you made the Rev5 cable. It really helps people who are thinking of installing it.
+
+  - type: dropdown
+    id: revision
+    attributes:
+      label: Revisión del aparato / Device revision
+      options:
+        - Rev4 (USB-C)
+        - Rev5 (J4902)
+        - No lo sé / Not sure
+
+  - type: dropdown
+    id: uso
+    attributes:
+      label: Cómo la usas / How you use it
+      multiple: true
+      options:
+        - Panel de Home Assistant / Home Assistant panel
+        - Altavoz de casa / Home speaker
+        - Tablet normal / Regular tablet
+        - Otra cosa / Something else
+
+  - type: textarea
+    id: cuenta
+    attributes:
+      label: Cuéntalo / Tell us about it
+      description: Fotos, capturas y lo que quieras contar. / Photos, screenshots and anything you'd like to share.
+    validations:
+      required: true

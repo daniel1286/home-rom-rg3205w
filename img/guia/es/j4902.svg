@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" font-family="Segoe UI, Inter, Arial, sans-serif" role="img" aria-label="Conector J4902 del Rev5 (JST-PH 2.0, 4 pines)">
+<rect width="960" height="420" fill="#1B1A18"/>
+<text x="480.0" y="46" font-size="26" fill="#F3EFE8" font-weight="700" text-anchor="middle">Conector J4902 del Rev5 (JST-PH 2.0, 4 pines)</text>
+<text x="480.0" y="76" font-size="17" fill="#ABA59B" font-weight="400" text-anchor="middle">Cada hilo del cable USB va a su pin. De izquierda a derecha: D-, D+, GND y +5V</text>
+<rect x="40" y="150" width="120" height="130" rx="10" fill="#3A3733" stroke="#847E74" stroke-width="3"/>
+<rect x="160" y="168" width="70" height="94" rx="4" fill="#C9C2B6" stroke="#847E74" stroke-width="2"/>
+<text x="100" y="312" font-size="16" fill="#ABA59B" font-weight="400" text-anchor="middle">al PC (USB-A)</text>
+<rect x="520" y="300" width="320" height="64" rx="8" fill="#F3EFE8" stroke="#847E74" stroke-width="3"/>
+<path d="M230 202 C 420 202, 560 160, 560 300" fill="none" stroke="#F3EFE8" stroke-width="7" stroke-dasharray="0"/>
+<rect x="544" y="312" width="32" height="40" rx="3" fill="#DDD6CA"/>
+<rect x="554" y="318" width="12" height="28" rx="2" fill="#B08A4A"/>
+<text x="560" y="394" font-size="20" fill="#F3EFE8" font-weight="700" text-anchor="middle">D-</text>
+<text x="560" y="414" font-size="14" fill="#ABA59B" font-weight="400" text-anchor="middle">blanco</text>
+<path d="M230 228 C 420 228, 640 160, 640 300" fill="none" stroke="#3FA34D" stroke-width="7" stroke-dasharray="0"/>
+<rect x="624" y="312" width="32" height="40" rx="3" fill="#DDD6CA"/>
+<rect x="634" y="318" width="12" height="28" rx="2" fill="#B08A4A"/>
+<text x="640" y="394" font-size="20" fill="#F3EFE8" font-weight="700" text-anchor="middle">D+</text>
+<text x="640" y="414" font-size="14" fill="#ABA59B" font-weight="400" text-anchor="middle">verde</text>
+<path d="M230 250 C 420 250, 720 160, 720 300" fill="none" stroke="#847E74" stroke-width="11"/>
+<path d="M230 250 C 420 250, 720 160, 720 300" fill="none" stroke="#2A2A2A" stroke-width="7"/>
+<rect x="704" y="312" width="32" height="40" rx="3" fill="#DDD6CA"/>
+<rect x="714" y="318" width="12" height="28" rx="2" fill="#B08A4A"/>
+<text x="720" y="394" font-size="20" fill="#F3EFE8" font-weight="700" text-anchor="middle">GND</text>
+<text x="720" y="414" font-size="14" fill="#ABA59B" font-weight="400" text-anchor="middle">negro</text>
+<path d="M230 180 C 420 180, 800 160, 800 300" fill="none" stroke="#D9443B" stroke-width="7" stroke-dasharray="0"/>
+<rect x="784" y="312" width="32" height="40" rx="3" fill="#DDD6CA"/>
+<rect x="794" y="318" width="12" height="28" rx="2" fill="#B08A4A"/>
+<text x="800" y="394" font-size="20" fill="#E0A85A" font-weight="700" text-anchor="middle">+5V</text>
+<text x="800" y="414" font-size="14" fill="#ABA59B" font-weight="400" text-anchor="middle">rojo</text>
+<text x="880" y="336" font-size="18" fill="#E0A85A" font-weight="700" text-anchor="start">J4902</text>
+<text x="480.0" y="112" font-size="14" fill="#847E74" font-weight="400" text-anchor="middle">Colores habituales de un cable USB: compruébalos con un polímetro antes de conectar.</text>
+</svg>

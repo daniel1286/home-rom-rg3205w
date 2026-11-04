@@ -1,0 +1,49 @@
+title: "[Duda] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Antes de preguntar, mira la [guía de instalación](https://github.com/daniel1286/home-rom-rg3205w/blob/main/guias/INSTALAR.md) y su apartado [Si algo va mal](https://github.com/daniel1286/home-rom-rg3205w/blob/main/guias/INSTALAR.md#10-si-algo-va-mal). Si es un fallo de Home, mejor en [Issues](https://github.com/daniel1286/home-rom-rg3205w/issues/new/choose). Cuando alguien te resuelva la duda, márcala como respuesta.
+
+        Before asking, have a look at the [install guide](https://github.com/daniel1286/home-rom-rg3205w/blob/main/guias/INSTALL.md) and its [If something goes wrong](https://github.com/daniel1286/home-rom-rg3205w/blob/main/guias/INSTALL.md#10-if-something-goes-wrong) section. If it's a bug in Home, please use [Issues](https://github.com/daniel1286/home-rom-rg3205w/issues/new/choose). When someone answers your question, mark it as the answer.
+
+  - type: dropdown
+    id: revision
+    attributes:
+      label: Revisión del aparato / Device revision
+      options:
+        - Rev4 (USB-C)
+        - Rev5 (J4902)
+        - No lo sé / Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: donde
+    attributes:
+      label: Dónde estás / Where are you
+      options:
+        - Antes de instalar / Before installing
+        - Drivers USB / USB drivers
+        - Fastboot o desbloqueo / Fastboot or unlocking
+        - Instalando Home / Installing Home
+        - Asistente de configuración / Setup wizard
+        - Usando Home / Using Home
+        - Actualizaciones / Updates
+        - Otra cosa / Something else
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Versión de Home / Home version
+      description: Si ya la tienes instalada. Ajustes → Información del tablet / If it's already installed. Settings → About tablet
+
+  - type: textarea
+    id: pregunta
+    attributes:
+      label: Tu duda / Your question
+      description: Qué intentas hacer, qué has probado y qué sale en pantalla. Las capturas ayudan. / What you're trying to do, what you've tried and what shows up on screen. Screenshots help.
+    validations:
+      required: true

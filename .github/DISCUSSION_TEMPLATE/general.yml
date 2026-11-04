@@ -1,0 +1,14 @@
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Para hablar de cualquier cosa sobre Home y el Askey RG3205W. Si es una duda concreta, usa Q&A; si es un fallo, [Issues](https://github.com/daniel1286/home-rom-rg3205w/issues/new/choose).
+
+        For anything about Home and the Askey RG3205W. If it's a specific question, use Q&A; if it's a bug, [Issues](https://github.com/daniel1286/home-rom-rg3205w/issues/new/choose).
+
+  - type: textarea
+    id: mensaje
+    attributes:
+      label: Mensaje / Message
+    validations:
+      required: true
