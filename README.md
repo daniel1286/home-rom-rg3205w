@@ -36,6 +36,66 @@
 > [!NOTE]
 > **Ya está la 2.0.** Descárgala en **[Releases](https://github.com/daniel1286/home-rom-rg3205w/releases/latest)** y sigue la [guía de instalación](guias/INSTALAR.md), o bájate **[Instalar-Home.exe](https://github.com/daniel1286/home-instalador-rg3205w/releases/latest/download/Instalar-Home.exe)**, que lo descarga e instala con ventana, sin consola. Para enterarte de las próximas versiones, dale a **Watch → Custom → Releases** arriba a la derecha.
 
+## Próximamente: Home 2.1
+
+La 2.1 está en preparación. Llegará como una actualización desde la app Actualizaciones, sin borrar nada.
+
+- **Bluetooth.** Arreglos para que funcione siempre: se podrá apagar y encender las veces que haga falta sin reiniciar. También estamos revisando los altavoces que se emparejan y se desconectan al momento.
+- **Actualizaciones mucho más pequeñas.** En lugar del sistema entero (más de 1 GB), se descarga solo lo que cambia desde tu versión. Quien tenga la 2.0 ya recibirá así la 2.1.
+- **Salvapantallas, una app nueva de Home.** Cuando no usas la pantalla, enseña lo útil de un vistazo: la hora y el tiempo sobre fondos que cambian solos según la fecha, la hora y el tiempo, y un faldón con titulares y avisos. Cuando importa, sale una alerta a pantalla completa: el despertador, la lluvia que se acerca, un avión que pasa cerca o el boletín de noticias de cada hora, con la foto y la entradilla de cada titular. Al tocarla, vuelves a tus apps.
+- **Todo a tu gusto.** Desde la propia app eliges qué se muestra, el diseño de la pantalla, el fondo (o que lo elija solo según el día), qué noticias (de dónde y de qué tema), cuándo pasa a modo noche y qué alertas quieres.
+- **Sin cuentas ni claves.** El tiempo sale de Open-Meteo, los vuelos de datos ADS-B abiertos y las noticias de los RSS que elijas.
+
+Así será Salvapantallas (vistas previas del diseño, pueden cambiar antes de la 2.1):
+
+<table>
+  <tr>
+    <td width="50%"><img src="img/salvapantallas/01_reposo.jpg" alt="El salvapantallas: la hora, el tiempo, la próxima alarma y los titulares"></td>
+    <td width="50%"><img src="img/salvapantallas/02_lluvia.jpg" alt="Alerta de lluvia: el radar sobre el mapa, con la lluvia que se acerca a casa"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>El salvapantallas: la hora, el tiempo, la próxima alarma y los titulares</sub></td>
+    <td align="center"><sub>Alerta de lluvia: el radar sobre el mapa, con la lluvia que se acerca a casa</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="img/salvapantallas/03_vuelo.jpg" alt="Alerta de un avión que pasa cerca: su ruta en el mapa y su ficha"></td>
+    <td width="50%"><img src="img/salvapantallas/04_noticias.jpg" alt="Boletín de noticias de cada hora, titular a titular"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Alerta de un avión que pasa cerca: su ruta en el mapa y su ficha</sub></td>
+    <td align="center"><sub>Boletín de noticias de cada hora, titular a titular</sub></td>
+  </tr>
+</table>
+
+Y sus ajustes, ya en la app, con un apartado para cada cosa (también pueden cambiar antes de la 2.1):
+
+<table>
+  <tr>
+    <td width="50%"><img src="img/salvapantallas/05_inicio.png" alt="Inicio: qué se muestra, tu ciudad y qué pasa al dejar de usar la pantalla"></td>
+    <td width="50%"><img src="img/salvapantallas/06_pantalla.png" alt="Pantalla: el faldón, la hora y once diseños para elegir"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Inicio: qué se muestra, tu ciudad y qué pasa al dejar de usar la pantalla</sub></td>
+    <td align="center"><sub>Pantalla: el faldón, la hora y once diseños para elegir</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="img/salvapantallas/07_fondo.png" alt="Fondo: automático según la fiesta, el tiempo y la hora, o el que elijas, y la chimenea"></td>
+    <td width="50%"><img src="img/salvapantallas/08_despertador.png" alt="Despertador: la hora, los días, el volumen que sube poco a poco y cuánto pospone"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Fondo: automático según la fiesta, el tiempo y la hora, o el que elijas, y la chimenea</sub></td>
+    <td align="center"><sub>Despertador: la hora, los días, el volumen que sube poco a poco y cuánto pospone</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="img/salvapantallas/09_lluvia_vuelos.png" alt="Lluvia y vuelos: a qué distancia avisan y cuánto se quedan en pantalla"></td>
+    <td width="50%"><img src="img/salvapantallas/10_noticias.png" alt="Noticias y avisos: el boletín de cada hora, de dónde, de qué y de qué medios"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Lluvia y vuelos: a qué distancia avisan y cuánto se quedan en pantalla</sub></td>
+    <td align="center"><sub>Noticias y avisos: el boletín de cada hora, de dónde, de qué y de qué medios</sub></td>
+  </tr>
+</table>
+
 ## Qué es Home
 
 El Askey RG3205W tiene más hardware del que su software deja ver: un Snapdragon 625 de ocho núcleos, pantalla de 8 pulgadas, dos altavoces y cuatro micrófonos. El software de fábrica se quedó en Android 8.1, con un kernel de 32 bits, el parche de seguridad de octubre de 2021 y las apps del operador.

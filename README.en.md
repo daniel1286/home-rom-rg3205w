@@ -36,6 +36,66 @@
 > [!NOTE]
 > **2.0 is out.** Download it from **[Releases](https://github.com/daniel1286/home-rom-rg3205w/releases/latest)** and follow the [install guide](guias/INSTALL.md), or get **[Instalar-Home.exe](https://github.com/daniel1286/home-instalador-rg3205w/releases/latest/download/Instalar-Home.exe)**, which downloads and installs it with a window, no console needed. To hear about new versions, click **Watch → Custom → Releases** at the top right.
 
+## Coming soon: Home 2.1
+
+2.1 is in the works. It will arrive as an update from the Updates app, without wiping anything.
+
+- **Bluetooth.** Fixes so it always works: you'll be able to turn it off and on as many times as you like without restarting. We're also looking into speakers that pair and then disconnect straight away.
+- **Much smaller updates.** Instead of the whole system (over 1 GB), only what changed since your version is downloaded. Anyone on 2.0 will already get 2.1 this way.
+- **Screensaver, a new Home app.** When you're not using the screen, it shows what matters at a glance: the time and weather over backgrounds that change on their own with the date, time of day and weather, plus a ticker with headlines and notices. When something matters, a full-screen alert appears: your alarm, rain on its way, a plane flying nearby or the hourly news bulletin, with each headline's photo and summary. Tap it to get back to your apps.
+- **Your way.** From the app itself you choose what it shows, the screen design, the background (or let it pick one for the day), which news (where from and what about), when it switches to night mode and which alerts you want.
+- **No accounts or keys.** Weather comes from Open-Meteo, flights from open ADS-B data and news from the RSS feeds you pick.
+
+This is what Screensaver will look like (design previews, may change before 2.1):
+
+<table>
+  <tr>
+    <td width="50%"><img src="img/salvapantallas/01_reposo.jpg" alt="The screensaver: time, weather, next alarm and headlines"></td>
+    <td width="50%"><img src="img/salvapantallas/02_lluvia.jpg" alt="Rain alert: the radar on the map, with rain heading for home"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>The screensaver: time, weather, next alarm and headlines</sub></td>
+    <td align="center"><sub>Rain alert: the radar on the map, with rain heading for home</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="img/salvapantallas/03_vuelo.jpg" alt="Alert for a plane flying nearby: its route on the map and its details"></td>
+    <td width="50%"><img src="img/salvapantallas/04_noticias.jpg" alt="Hourly news bulletin, one headline at a time"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Alert for a plane flying nearby: its route on the map and its details</sub></td>
+    <td align="center"><sub>Hourly news bulletin, one headline at a time</sub></td>
+  </tr>
+</table>
+
+And its settings, already in the app, with a section for each thing (these may also change before 2.1):
+
+<table>
+  <tr>
+    <td width="50%"><img src="img/salvapantallas/05_inicio.png" alt="Home: what it shows, your city and what happens when you stop using the screen"></td>
+    <td width="50%"><img src="img/salvapantallas/06_pantalla.png" alt="Display: the ticker, the clock and eleven designs to choose from"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Home: what it shows, your city and what happens when you stop using the screen</sub></td>
+    <td align="center"><sub>Display: the ticker, the clock and eleven designs to choose from</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="img/salvapantallas/07_fondo.png" alt="Background: automatic by holiday, weather and time of day, or the one you pick, and the fireplace"></td>
+    <td width="50%"><img src="img/salvapantallas/08_despertador.png" alt="Alarm: the time, the days, a volume that rises gradually and how long snooze lasts"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Background: automatic by holiday, weather and time of day, or the one you pick, and the fireplace</sub></td>
+    <td align="center"><sub>Alarm: the time, the days, a volume that rises gradually and how long snooze lasts</sub></td>
+  </tr>
+  <tr>
+    <td width="50%"><img src="img/salvapantallas/09_lluvia_vuelos.png" alt="Rain and flights: how close they alert you and how long they stay on screen"></td>
+    <td width="50%"><img src="img/salvapantallas/10_noticias.png" alt="News and alerts: the hourly bulletin, where it's from, what it covers and which outlets"></td>
+  </tr>
+  <tr>
+    <td align="center"><sub>Rain and flights: how close they alert you and how long they stay on screen</sub></td>
+    <td align="center"><sub>News and alerts: the hourly bulletin, where it's from, what it covers and which outlets</sub></td>
+  </tr>
+</table>
+
 ## What is Home
 
 The Askey RG3205W has more hardware than its software lets on: an eight-core Snapdragon 625, an 8-inch screen, two speakers and four microphones. The stock software stopped at Android 8.1, with a 32-bit kernel, the October 2021 security patch and the carrier's apps.
