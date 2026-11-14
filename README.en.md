@@ -38,13 +38,19 @@
 
 ## Coming soon: Home 2.1
 
-2.1 is in the works. It will arrive as an update from the Updates app, without wiping anything.
+2.1 is almost ready. It will arrive as an update from the Updates app, without wiping anything, and only what changed will be downloaded. This is what it brings:
 
-- **Bluetooth.** Fixes so it always works: you'll be able to turn it off and on as many times as you like without restarting. We're also looking into speakers that pair and then disconnect straight away.
-- **Much smaller updates.** Instead of the whole system (over 1 GB), only what changed since your version is downloaded. Anyone on 2.0 will already get 2.1 this way.
-- **Screensaver, a new Home app.** When you're not using the screen, it shows what matters at a glance: the time and weather over backgrounds that change on their own with the date, time of day and weather, plus a ticker with headlines and notices. When something matters, a full-screen alert appears: your alarm, rain on its way, a plane flying nearby or the hourly news bulletin, with each headline's photo and summary. Tap it to get back to your apps.
-- **Your way.** From the app itself you choose what it shows, the screen design, the background (or let it pick one for the day), which news (where from and what about), when it switches to night mode and which alerts you want.
-- **No accounts or keys.** Weather comes from Open-Meteo, flights from open ADS-B data and news from the RSS feeds you pick.
+- **Screensaver, a new Home app.** When you're not using the screen, it shows what matters at a glance: the time and weather over backgrounds that change on their own with the date, time of day and weather, and a ticker with headlines and alerts, at the size you choose. When it matters, a full-screen alert appears: the alarm clock, rain on its way, a plane flying nearby or the hourly news bulletin. No accounts or keys: weather comes from Open-Meteo, flights from open ADS-B data and news from the RSS feeds you pick.
+- **Cast.** Send the picture and sound from an iPhone, a Mac, Windows (Win + K) or Android to the screen, plus photos, videos and music. You choose who can send.
+- **Offline voice** (optional). Dictate with the keyboard mic and ask for alarms, timers, the weather or to open an app. Your language's model is downloaded once and then everything happens on the screen.
+- **Web panel** (optional, off by default). Control the screen from your phone's or computer's browser, only inside your home, over HTTPS and pairing each browser with a code.
+- **Help app.** The Home manual on the screen, in six languages, and from there you can report a problem and see the reply. If you don't want it, uninstall it like any other app.
+- **Monitor app** (optional). CPU, memory, temperatures and network, live.
+- **Home apps update themselves**, without restarting and without waiting for another Home version.
+- **Text size** for every Home app, and **gestures or the classic three buttons**, your choice.
+- **Bluetooth fixed.** Speakers and headphones stay connected and play, keyboards and controllers work, and you can turn it off and on without restarting.
+- **Much smaller updates.** Instead of the whole system (over 1 GB), only what changed since your version is downloaded. And if something breaks, Updates can reinstall the full system without wiping your data.
+- **Help improve Home** (optional and off by default). If you turn it on, it reports once a day how the screen is doing and whether updates go well, with nothing that says who you are. [Exactly what is sent](docs/estadisticas.md) (in Spanish).
 
 This is what Screensaver will look like (design previews, may change before 2.1):
 

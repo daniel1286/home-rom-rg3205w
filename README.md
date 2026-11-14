@@ -38,13 +38,19 @@
 
 ## Próximamente: Home 2.1
 
-La 2.1 está en preparación. Llegará como una actualización desde la app Actualizaciones, sin borrar nada.
+La 2.1 está casi lista. Llegará como una actualización desde la app Actualizaciones, sin borrar nada, y solo se bajará lo que cambia. Esto es lo que trae:
 
-- **Bluetooth.** Arreglos para que funcione siempre: se podrá apagar y encender las veces que haga falta sin reiniciar. También estamos revisando los altavoces que se emparejan y se desconectan al momento.
-- **Actualizaciones mucho más pequeñas.** En lugar del sistema entero (más de 1 GB), se descarga solo lo que cambia desde tu versión. Quien tenga la 2.0 ya recibirá así la 2.1.
-- **Salvapantallas, una app nueva de Home.** Cuando no usas la pantalla, enseña lo útil de un vistazo: la hora y el tiempo sobre fondos que cambian solos según la fecha, la hora y el tiempo, y un faldón con titulares y avisos. Cuando importa, sale una alerta a pantalla completa: el despertador, la lluvia que se acerca, un avión que pasa cerca o el boletín de noticias de cada hora, con la foto y la entradilla de cada titular. Al tocarla, vuelves a tus apps.
-- **Todo a tu gusto.** Desde la propia app eliges qué se muestra, el diseño de la pantalla, el fondo (o que lo elija solo según el día), qué noticias (de dónde y de qué tema), cuándo pasa a modo noche y qué alertas quieres.
-- **Sin cuentas ni claves.** El tiempo sale de Open-Meteo, los vuelos de datos ADS-B abiertos y las noticias de los RSS que elijas.
+- **Salvapantallas, una app nueva de Home.** Cuando no usas la pantalla, enseña lo útil de un vistazo: la hora y el tiempo sobre fondos que cambian solos según la fecha, la hora y el tiempo, y un faldón con titulares y avisos, del tamaño que elijas. Cuando importa, sale una alerta a pantalla completa: el despertador, la lluvia que se acerca, un avión que pasa cerca o el boletín de noticias de cada hora. Sin cuentas ni claves: el tiempo sale de Open-Meteo, los vuelos de datos ADS-B abiertos y las noticias de los RSS que elijas.
+- **Proyectar.** Envía a la pantalla la imagen y el sonido del iPhone, el Mac, Windows (Win + K) o Android, y fotos, vídeos y música. Tú eliges quién puede enviar.
+- **Voz sin Internet** (opcional). Dicta con el micrófono del teclado y pide alarmas, temporizadores, el tiempo o que abra una app. El modelo de tu idioma se baja una vez y después todo pasa en la pantalla.
+- **Panel web** (opcional, apagado de serie). Maneja la pantalla desde el navegador del móvil o del ordenador, solo dentro de casa, con HTTPS y emparejando cada navegador con un código.
+- **App Ayuda.** El manual de Home dentro de la pantalla, en seis idiomas, y desde ahí puedes contar un problema y ver la respuesta. Si no la quieres, se desinstala como cualquier app.
+- **App Monitor** (opcional). Procesador, memoria, temperaturas y red, en directo.
+- **Las apps de Home se ponen al día solas**, sin reiniciar y sin esperar a otra versión de Home.
+- **Tamaño del texto** para todas las apps de Home, y **gestos o los tres botones de siempre**, a elegir.
+- **Bluetooth arreglado.** Los altavoces y auriculares se quedan conectados y suenan, funcionan teclados y mandos, y se puede apagar y encender sin reiniciar.
+- **Actualizaciones mucho más pequeñas.** En lugar del sistema entero (más de 1 GB), se descarga solo lo que cambia desde tu versión. Y si algo se estropea, Actualizaciones puede volver a instalar el sistema completo sin borrar tus datos.
+- **Ayuda a mejorar Home** (opcional y apagado de serie). Si lo activas, cuenta una vez al día cómo está la pantalla y si las actualizaciones salen bien, sin nada que diga quién eres. [Qué se envía, exactamente](docs/estadisticas.md).
 
 Así será Salvapantallas (vistas previas del diseño, pueden cambiar antes de la 2.1):
 
