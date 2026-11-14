@@ -34,11 +34,11 @@
 <br>
 
 > [!NOTE]
-> **Ya está la 2.0.** Descárgala en **[Releases](https://github.com/daniel1286/home-rom-rg3205w/releases/latest)** y sigue la [guía de instalación](guias/INSTALAR.md), o bájate **[Instalar-Home.exe](https://github.com/daniel1286/home-instalador-rg3205w/releases/latest/download/Instalar-Home.exe)**, que lo descarga e instala con ventana, sin consola. Para enterarte de las próximas versiones, dale a **Watch → Custom → Releases** arriba a la derecha.
+> **Ya está la 2.1.** Si tienes la 2.0, te llega desde la app Actualizaciones sin borrar nada. Para instalarla desde cero, descárgala en **[Releases](https://github.com/daniel1286/home-rom-rg3205w/releases/latest)** y sigue la [guía de instalación](guias/INSTALAR.md), o bájate **[Instalar-Home.exe](https://github.com/daniel1286/home-instalador-rg3205w/releases/latest/download/Instalar-Home.exe)**, que lo descarga e instala con ventana, sin consola. Para enterarte de las próximas versiones, dale a **Watch → Custom → Releases** arriba a la derecha.
 
-## Próximamente: Home 2.1
+## Novedades de Home 2.1
 
-La 2.1 está casi lista. Llegará como una actualización desde la app Actualizaciones, sin borrar nada, y solo se bajará lo que cambia. Esto es lo que trae:
+Si tienes la 2.0, te llega desde la app Actualizaciones sin borrar nada, y solo se baja lo que cambia.
 
 - **Salvapantallas, una app nueva de Home.** Cuando no usas la pantalla, enseña lo útil de un vistazo: la hora y el tiempo sobre fondos que cambian solos según la fecha, la hora y el tiempo, y un faldón con titulares y avisos, del tamaño que elijas. Cuando importa, sale una alerta a pantalla completa: el despertador, la lluvia que se acerca, un avión que pasa cerca o el boletín de noticias de cada hora. Sin cuentas ni claves: el tiempo sale de Open-Meteo, los vuelos de datos ADS-B abiertos y las noticias de los RSS que elijas.
 - **Proyectar.** Envía a la pantalla la imagen y el sonido del iPhone, el Mac, Windows (Win + K) o Android, y fotos, vídeos y música. Tú eliges quién puede enviar.
@@ -52,7 +52,7 @@ La 2.1 está casi lista. Llegará como una actualización desde la app Actualiza
 - **Actualizaciones mucho más pequeñas.** En lugar del sistema entero (más de 1 GB), se descarga solo lo que cambia desde tu versión. Y si algo se estropea, Actualizaciones puede volver a instalar el sistema completo sin borrar tus datos.
 - **Ayuda a mejorar Home** (opcional y apagado de serie). Si lo activas, cuenta una vez al día cómo está la pantalla y si las actualizaciones salen bien, sin nada que diga quién eres. [Qué se envía, exactamente](docs/estadisticas.md).
 
-Así será Salvapantallas (vistas previas del diseño, pueden cambiar antes de la 2.1):
+Salvapantallas, en imágenes del diseño:
 
 <table>
   <tr>
@@ -73,7 +73,7 @@ Así será Salvapantallas (vistas previas del diseño, pueden cambiar antes de l
   </tr>
 </table>
 
-Y sus ajustes, ya en la app, con un apartado para cada cosa (también pueden cambiar antes de la 2.1):
+Y sus ajustes, con un apartado para cada cosa:
 
 <table>
   <tr>
@@ -114,7 +114,7 @@ La primera vez que la enciendes, un asistente te pregunta para qué la quieres y
 - **Altavoz de casa**, sonando a la vez que el resto de altavoces con Snapcast.
 - **Tablet de 8 pulgadas**, con las apps que instales desde Aurora Store o F-Droid.
 
-| | Software de fábrica | Home 2.0 |
+| | Software de fábrica | Home 2.1 |
 |---|---|---|
 | Android | 8.1 | 15 (LineageOS 22.2) |
 | Kernel | 3.18, 32 bits | 4.9, 64 bits |
@@ -151,7 +151,7 @@ La primera vez que la enciendes, un asistente te pregunta para qué la quieres y
     </td>
     <td valign="top">
       <h3>Se actualiza sola</h3>
-      Cuando publico una versión nueva aquí, la app Actualizaciones te avisa y tú eliges cuándo instalarla. Conserva tus datos y apps, sigue por donde iba si se corta el Wi-Fi y solo acepta actualizaciones firmadas por mí.
+      Cuando publico una versión nueva aquí, la app Actualizaciones te avisa y tú eliges cuándo instalarla. Solo baja lo que cambia, y las apps de Home se ponen al día solas. Conserva tus datos y apps, sigue por donde iba si se corta el Wi-Fi y solo acepta actualizaciones firmadas por mí.
     </td>
   </tr>
   <tr>
@@ -161,7 +161,7 @@ La primera vez que la enciendes, un asistente te pregunta para qué la quieres y
     </td>
     <td valign="top">
       <h3>Sin nada que te espíe</h3>
-      Sin apps del operador ni telemetría. Lo único que consulta por su cuenta es GitHub, para ver si hay actualizaciones. Y root con Magisk para quien lo quiera.
+      Sin apps del operador ni telemetría. Por su cuenta solo pregunta a la dirección de Home si hay actualizaciones, y eso solo cuenta cuántas pantallas hay en cada versión, sin identificador ni IP. «Ayuda a mejorar Home» es opcional y va apagado (<a href="docs/estadisticas.md">qué se envía</a>). Y root con Magisk para quien lo quiera.
     </td>
   </tr>
 </table>

@@ -34,11 +34,11 @@
 <br>
 
 > [!NOTE]
-> **2.0 is out.** Download it from **[Releases](https://github.com/daniel1286/home-rom-rg3205w/releases/latest)** and follow the [install guide](guias/INSTALL.md), or get **[Instalar-Home.exe](https://github.com/daniel1286/home-instalador-rg3205w/releases/latest/download/Instalar-Home.exe)**, which downloads and installs it with a window, no console needed. To hear about new versions, click **Watch → Custom → Releases** at the top right.
+> **2.1 is out.** If you're on 2.0, it arrives from the Updates app without wiping anything. To install from scratch, download it from **[Releases](https://github.com/daniel1286/home-rom-rg3205w/releases/latest)** and follow the [install guide](guias/INSTALL.md), or get **[Instalar-Home.exe](https://github.com/daniel1286/home-instalador-rg3205w/releases/latest/download/Instalar-Home.exe)**, which downloads and installs it with a window, no console. To hear about new versions, click **Watch → Custom → Releases** at the top right.
 
-## Coming soon: Home 2.1
+## What's new in Home 2.1
 
-2.1 is almost ready. It will arrive as an update from the Updates app, without wiping anything, and only what changed will be downloaded. This is what it brings:
+If you're on 2.0, it arrives from the Updates app without wiping anything, and only what changed is downloaded.
 
 - **Screensaver, a new Home app.** When you're not using the screen, it shows what matters at a glance: the time and weather over backgrounds that change on their own with the date, time of day and weather, and a ticker with headlines and alerts, at the size you choose. When it matters, a full-screen alert appears: the alarm clock, rain on its way, a plane flying nearby or the hourly news bulletin. No accounts or keys: weather comes from Open-Meteo, flights from open ADS-B data and news from the RSS feeds you pick.
 - **Cast.** Send the picture and sound from an iPhone, a Mac, Windows (Win + K) or Android to the screen, plus photos, videos and music. You choose who can send.
@@ -52,7 +52,7 @@
 - **Much smaller updates.** Instead of the whole system (over 1 GB), only what changed since your version is downloaded. And if something breaks, Updates can reinstall the full system without wiping your data.
 - **Help improve Home** (optional and off by default). If you turn it on, it reports once a day how the screen is doing and whether updates go well, with nothing that says who you are. [Exactly what is sent](docs/estadisticas.md) (in Spanish).
 
-This is what Screensaver will look like (design previews, may change before 2.1):
+Screensaver, in design images:
 
 <table>
   <tr>
@@ -73,7 +73,7 @@ This is what Screensaver will look like (design previews, may change before 2.1)
   </tr>
 </table>
 
-And its settings, already in the app, with a section for each thing (these may also change before 2.1):
+And its settings, with a section for each thing:
 
 <table>
   <tr>
@@ -114,7 +114,7 @@ The first time you turn it on, a setup wizard asks what you want it for and gets
 - **Home speaker**, playing in sync with the rest of your speakers through Snapcast.
 - **8-inch tablet**, with the apps you install from Aurora Store or F-Droid.
 
-| | Stock software | Home 2.0 |
+| | Stock software | Home 2.1 |
 |---|---|---|
 | Android | 8.1 | 15 (LineageOS 22.2) |
 | Kernel | 3.18, 32-bit | 4.9, 64-bit |
@@ -153,7 +153,7 @@ The setup wizard speaks Spanish, English, Catalan, Galician, Basque and Portugue
     </td>
     <td valign="top">
       <h3>Updates itself</h3>
-      When I publish a new version here, the Updates app lets you know and you choose when to install it. It keeps your data and apps, picks up where it left off if Wi-Fi drops, and only accepts updates signed by me.
+      When I publish a new version here, the Updates app lets you know and you choose when to install it. It only downloads what changed, and the Home apps update themselves. It keeps your data and apps, picks up where it left off if Wi-Fi drops, and only accepts updates signed by me.
     </td>
   </tr>
   <tr>
@@ -163,7 +163,7 @@ The setup wizard speaks Spanish, English, Catalan, Galician, Basque and Portugue
     </td>
     <td valign="top">
       <h3>Nothing watching you</h3>
-      No carrier apps and no telemetry. The only thing it checks on its own is GitHub, to look for updates. And Magisk root for whoever wants it.
+      No carrier apps and no telemetry. On its own it only asks the Home server whether there are updates, and that only counts how many screens are on each version, with no identifier or IP. "Help improve Home" is optional and off (<a href="docs/estadisticas.md">what is sent</a>, in Spanish). And Magisk root for whoever wants it.
     </td>
   </tr>
 </table>

@@ -1,0 +1,90 @@
+{
+  "v": 1,
+  "idiomas": ["es", "ca", "en", "eu", "gl", "pt"],
+  "secciones": [
+    {
+      "id": "empezar",
+      "icono": "bandera",
+      "guias": [
+        {"id": "conoce-tu-pantalla"},
+        {"id": "primeros-pasos"},
+        {"id": "moverte-por-home"},
+        {"id": "tamano-del-texto"},
+        {"id": "wifi-nombre-y-hora"},
+        {"id": "privacidad"}
+      ]
+    },
+    {
+      "id": "proyectar",
+      "icono": "proyectar",
+      "guias": [
+        {"id": "proyectar", "app": "org.home.proyectar"},
+        {"id": "proyectar-iphone", "app": "org.home.proyectar"},
+        {"id": "proyectar-mac", "app": "org.home.proyectar"},
+        {"id": "proyectar-windows", "app": "org.home.proyectar"},
+        {"id": "proyectar-android", "app": "org.home.proyectar"},
+        {"id": "fotos-videos-y-musica", "app": "org.home.proyectar"},
+        {"id": "solo-sonido", "app": "org.home.proyectar"}
+      ]
+    },
+    {
+      "id": "reposo",
+      "icono": "luna",
+      "guias": [
+        {"id": "salvapantallas", "app": "org.home.salvapantallas"},
+        {"id": "despertador", "app": "org.home.salvapantallas"},
+        {"id": "lluvia-y-aviones", "app": "org.home.salvapantallas"},
+        {"id": "noticias-y-notificaciones", "app": "org.home.salvapantallas"}
+      ]
+    },
+    {
+      "id": "sonido",
+      "icono": "altavoz",
+      "guias": [
+        {"id": "bluetooth"},
+        {"id": "altavoz-de-casa"}
+      ]
+    },
+    {
+      "id": "apps",
+      "icono": "apps",
+      "guias": [
+        {"id": "home-assistant"},
+        {"id": "instalar-apps"},
+        {"id": "manejar-desde-el-pc"},
+        {"id": "monitor", "app": "org.home.monitor"},
+        {"id": "panel-web", "app": "org.home.panelweb"},
+        {"id": "voz", "app": "org.home.voz"},
+        {"id": "quitar-o-poner-apps"}
+      ]
+    },
+    {
+      "id": "actualizaciones",
+      "icono": "actualizar",
+      "guias": [
+        {"id": "actualizar", "app": "org.home.actualizaciones"},
+        {"id": "si-no-se-instala", "app": "org.home.actualizaciones"},
+        {"id": "busqueda-y-ayudar", "app": "org.home.actualizaciones"}
+      ]
+    },
+    {
+      "id": "avanzado",
+      "icono": "terminal",
+      "guias": [
+        {"id": "adb"},
+        {"id": "root"},
+        {"id": "red-y-certificados"},
+        {"id": "recovery"},
+        {"id": "volver-a-instalar"}
+      ]
+    },
+    {
+      "id": "problemas",
+      "icono": "aviso",
+      "guias": [
+        {"id": "problemas-frecuentes", "casos": true},
+        {"id": "contar-un-problema"}
+      ]
+    }
+  ]
+}
